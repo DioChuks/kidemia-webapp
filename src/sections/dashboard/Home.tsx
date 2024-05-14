@@ -1,4 +1,5 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 import LogoCC from "../../assets/images/KIDEMIA LOGO pro 2.png";
 import Ellipse from "../../assets/images/Ellipse 1.svg";
 import Img2 from "../../assets/images/image 2.png";
@@ -19,6 +20,10 @@ export interface MyCustomCSS extends CSSProperties {
 function HomeDashboard() {
   const [testModal, setTestModal] = useState(false);
   const [examModal, setExamModal] = useState(false);
+
+  const { userData } = useContext(AuthContext);
+  console.log("This is the logged in user:");
+  console.log(userData);
 
   const handleTestModal = () => {
     setTestModal(!testModal);
@@ -128,7 +133,7 @@ function HomeDashboard() {
                 className="whitespace-no overflow-hidden text-40 sm-text-value text-white animate-typing"
                 style={{ "--textSmVal": "2rem" } as MyCustomCSS}
               >
-                Welcome to Kidemia
+                Welcome {userData.email ?? "to Kidemia"}
               </h1>
               <p className="whitespace-no overflow-hidden text-20 text-white animate-typing">
                 What would you like to do?

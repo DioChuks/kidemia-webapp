@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState, useContext } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import MailIcon from "../components/icons/MailIcon";
@@ -35,12 +35,16 @@ const LoginPage: React.FC = () => {
     console.log("Password:", password);
 
     try {
-      const response = await axios.post("/api/login", {
-        email,
-        password,
-      });
+      // const response = await axios.post("/api/login", {
+      // email,
+      // password,
+      // });
 
-      const userData = response.data;
+      const userData = {
+        email: email,
+        password: password,
+        token: "2y73|3838idcdd9qdjw9dh393739f8eiehd9ehfdj9w3dg83dhq9deihd",
+      };
 
       // Authenticate the user and set the user data in the authContext
       login(userData);
