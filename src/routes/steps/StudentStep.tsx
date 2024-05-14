@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import MailIcon from '../../components/icons/MailIcon';
-import ScanIcon from '../../components/icons/ScanIcon';
-import GoogleLogo from '../../assets/images/google.png';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import MailIcon from "../../components/icons/MailIcon";
+import ScanIcon from "../../components/icons/ScanIcon";
+import GoogleLogo from "../../assets/images/google.png";
+import { Link } from "react-router-dom";
 
 interface Purpose {
   id: number;
@@ -10,7 +10,7 @@ interface Purpose {
 }
 
 interface UserData {
-  type: 'student' | 'school';
+  type: "student" | "school";
   email: string;
   password: string;
   confirm_password: string;
@@ -19,21 +19,23 @@ interface UserData {
 }
 
 const StudentStep: React.FC = () => {
-  const [step, setStep] = useState<'personal' | 'purpose' | 'guardian'>('personal');
+  const [step, setStep] = useState<"personal" | "purpose" | "guardian">(
+    "personal",
+  );
 
   const [userData, setUserData] = useState<UserData>({
-    type: 'student',
-    email: '',
-    password: '',
-    confirm_password: '',
+    type: "student",
+    email: "",
+    password: "",
+    confirm_password: "",
     purpose: null,
-    guardian_email: '',
+    guardian_email: "",
   });
 
   const purposes: Purpose[] = [
-    { id: 1, name: 'Common Entrance' },
-    { id: 2, name: 'Junior WAEC' },
-    { id: 3, name: 'Senior WAEC' },
+    { id: 1, name: "Common Entrance" },
+    { id: 2, name: "Junior WAEC" },
+    { id: 3, name: "Senior WAEC" },
     // Add more purposes as needed
   ];
 
@@ -53,50 +55,53 @@ const StudentStep: React.FC = () => {
   };
 
   const handleNextStep = () => {
-    if (step === 'personal') {
-      setStep('purpose');
-    } else if (step === 'purpose' && userData.purpose !== null) {
-      setStep('guardian');
+    if (step === "personal") {
+      setStep("purpose");
+    } else if (step === "purpose" && userData.purpose !== null) {
+      setStep("guardian");
     }
   };
 
   const handleBackStep = () => {
-    if (step === 'purpose') {
-      setStep('personal');
-    } else if (step === 'guardian') {
-      setStep('purpose');
+    if (step === "purpose") {
+      setStep("personal");
+    } else if (step === "guardian") {
+      setStep("purpose");
     }
   };
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
+      const response = await fetch("/api/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
       });
 
       if (response.ok) {
-        console.log('Registration successful');
+        console.log("Registration successful");
         // Handle successful registration
       } else {
-        console.error('Registration failed');
+        console.error("Registration failed");
         // Handle registration failure
       }
     } catch (error) {
-      console.error('Error during registration:', error);
+      console.error("Error during registration:", error);
       // Handle network or other errors
     }
   };
 
   const renderStep = () => {
     switch (step) {
-      case 'personal':
+      case "personal":
         return (
           <div id="step" className="flex flex-col gap-5">
-            <div id="inputBox" className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary">
+            <div
+              id="inputBox"
+              className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"
+            >
               <label htmlFor="email">
                 <MailIcon />
               </label>
@@ -110,7 +115,10 @@ const StudentStep: React.FC = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <div id="inputPasswordBox" className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary">
+            <div
+              id="inputPasswordBox"
+              className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"
+            >
               <label htmlFor="password">
                 <ScanIcon />
               </label>
@@ -125,7 +133,10 @@ const StudentStep: React.FC = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <div id="checkPasswordBox" className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary">
+            <div
+              id="checkPasswordBox"
+              className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"
+            >
               <label htmlFor="confirmPassword">
                 <ScanIcon />
               </label>
@@ -143,7 +154,7 @@ const StudentStep: React.FC = () => {
             <button
               id="nextStep"
               className="w-full p-10 bg-primary text-white text-hover-color font-xs rounded-sm border-none cursor-pointer transition-all"
-              style={{ '--textColor': '#f7f7f7' } as React.CSSProperties}
+              style={{ "--textColor": "#f7f7f7" } as React.CSSProperties}
               type="button"
               onClick={handleNextStep}
             >
@@ -154,22 +165,27 @@ const StudentStep: React.FC = () => {
               href="#"
               id="registerWithGoogle"
               className="w-full flex justify-start items-center gap-10 p-10 bg-white bg-hover font-xs rounded-sm border-none cursor-pointer transition-all"
-              style={{ '--bgHoverColor': '#f7f7f7' } as React.CSSProperties}
+              style={{ "--bgHoverColor": "#f7f7f7" } as React.CSSProperties}
             >
               <img src={GoogleLogo} alt="google-logo" /> Sign up with Google
             </a>
             <div id="loginLink" className="text-center">
               <span>
-                I have an account <Link to="/login" className="text-primary text-hover-underline">
+                I have an account{" "}
+                <Link to="/login" className="text-primary text-hover-underline">
                   Login
                 </Link>
               </span>
             </div>
           </div>
         );
-      case 'purpose':
+      case "purpose":
         return (
-          <div id="step" className="w-full flex-col justify-evenly items-center gap-5 h-md-sm" style={{ '--rH': '300px' } as React.CSSProperties}>
+          <div
+            id="step"
+            className="w-full flex-col justify-evenly items-center gap-5 h-md-sm"
+            style={{ "--rH": "300px" } as React.CSSProperties}
+          >
             <h2>What are you preparing for?</h2>
             <div className="w-3-quarts flex justify-between items-center gap-5">
               {purposes.map((purpose) => (
@@ -185,23 +201,29 @@ const StudentStep: React.FC = () => {
                     id={`purpose-${purpose.id}`}
                     aria-describedby="purpose"
                     value={purpose.id}
-                    checked={purpose === purpose.id}
                     onChange={() => handlePurposeChange(purpose.id)}
                   />
-                  <label htmlFor={`purpose-${purpose.id}`} className="cursor-pointer">
+                  <label
+                    htmlFor={`purpose-${purpose.id}`}
+                    className="cursor-pointer"
+                  >
                     {purpose.name}
                   </label>
                 </div>
               ))}
             </div>
             <div className="w-full flex justify-between items-center">
-              <a id="backStep" className="text-dark font-xs cursor-pointer" onClick={handleBackStep}>
+              <a
+                id="backStep"
+                className="text-dark font-xs cursor-pointer"
+                onClick={handleBackStep}
+              >
                 &lt; Back
               </a>
               <button
                 id="nextStep"
                 className="w-half p-10 bg-primary text-white text-hover-color font-xs rounded-sm border-none cursor-disallowed transition-all continue-purpose"
-                style={{ '--textColor': 'green' } as React.CSSProperties}
+                style={{ "--textColor": "green" } as React.CSSProperties}
                 type="button"
                 onClick={handleNextStep}
                 disabled={userData.purpose === null}
@@ -211,13 +233,22 @@ const StudentStep: React.FC = () => {
             </div>
           </div>
         );
-      case 'guardian':
+      case "guardian":
         return (
-          <div id="step" className="w-full flex-col justify-evenly items-center gap-5 h-md-sm" style={{ '--rH': '300px' } as React.CSSProperties}>
+          <div
+            id="step"
+            className="w-full flex-col justify-evenly items-center gap-5 h-md-sm"
+            style={{ "--rH": "300px" } as React.CSSProperties}
+          >
             <h2>Let's meet your guardian</h2>
-            <p className="text-center">Your guardian would receive reports on tests and exams you take</p>
+            <p className="text-center">
+              Your guardian would receive reports on tests and exams you take
+            </p>
             <div className="w-3-quarts flex items-center gap-5">
-              <div id="inputBox" className="w-full flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary">
+              <div
+                id="inputBox"
+                className="w-full flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"
+              >
                 <label htmlFor="guardianEmail">
                   <MailIcon />
                 </label>
@@ -227,20 +258,26 @@ const StudentStep: React.FC = () => {
                   id="guardianEmail"
                   placeholder="Guardian email"
                   className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark"
-                  value={guardianEmail}
+                  value={userData.guardian_email}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
             <div className="w-full flex justify-between items-center">
-              <a id="backStep" className="text-dark font-xs cursor-pointer" onClick={handleBackStep}>
+              <a
+                id="backStep"
+                className="text-dark font-xs cursor-pointer"
+                onClick={handleBackStep}
+              >
                 &lt; Back
               </a>
               <button
                 id="finalStep"
                 className="w-half p-10 bg-primary text-white text-hover-color font-xs rounded-sm border-none transition-all"
-                style={{ '--textColor': 'green' } as React.CSSProperties}
-                type="submit">
+                style={{ "--textColor": "green" } as React.CSSProperties}
+                type="button"
+                onClick={handleSubmit}
+              >
                 continue
               </button>
             </div>
@@ -248,11 +285,16 @@ const StudentStep: React.FC = () => {
         );
       default:
         return null;
-      }
-    };
-  return <div className='w-3-quarts sm-md-width' style={{ "--rWidthValue": "100%"} as React.CSSProperties}>
-  {renderStep()}
-  </div>;
+    }
+  };
+  return (
+    <div
+      className="w-3-quarts sm-md-width"
+      style={{ "--rWidthValue": "100%" } as React.CSSProperties}
+    >
+      {renderStep()}
+    </div>
+  );
 };
 
 export default StudentStep;

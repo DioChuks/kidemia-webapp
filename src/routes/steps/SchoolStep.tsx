@@ -112,7 +112,7 @@ const SchoolStep: React.FC = () => {
             </a>
             <div id="loginLink" className="text-center">
               <span>
-                I have an account <Link href="/login" className="text-primary text-hover-underline">
+                I have an account <Link to="/login" className="text-primary text-hover-underline">
                   Login
                 </Link>
               </span>
@@ -137,7 +137,6 @@ const SchoolStep: React.FC = () => {
                     id={`purpose-${purpose.id}`}
                     aria-describedby="purpose"
                     value={purpose.id}
-                    checked={purpose === purpose.id}
                     onChange={() => handlePurposeChange(purpose.id)}
                   />
                   <label htmlFor={`purpose-${purpose.id}`} className="cursor-pointer">
@@ -200,8 +199,8 @@ const SchoolStep: React.FC = () => {
         );
       default:
         return null;
-      }
-    };
+    }
+  };
   return <>{renderStep()}</>;
 };
 

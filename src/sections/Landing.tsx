@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState, useEffect } from "react";
+import { CSSProperties, useState, useEffect } from "react";
 import LogoCC from "../assets/images/KIDEMIA LOGO pro 2.png";
 import Ellipse from "../assets/images/Ellipse 1.svg";
 import MenuIcon from "../components/icons/MenuIcon";
