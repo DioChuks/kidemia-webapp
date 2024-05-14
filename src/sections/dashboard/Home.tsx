@@ -82,7 +82,7 @@ function HomeDashboard() {
                 <a href="#">Scheme</a>
               </li>
               <li className="nav-item">
-                <Link to="dashboard">Dashboard</Link>
+                <Link to="">Dashboard</Link>
               </li>
               <li className="nav-item">
                 <a href="#">
@@ -91,9 +91,9 @@ function HomeDashboard() {
               </li>
               <ul>
                 <li className="nav-item">
-                  <a href="user-profile">
+                  <Link to="/user-profile">
                     <img src={Ellipse} alt="User-icon" />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </ul>
