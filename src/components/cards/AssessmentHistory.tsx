@@ -46,8 +46,8 @@ const AssessmentHistory: React.FC<AssessmentHistoryProps> = ({
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          className={`px-3 py-1 mr-2 ${i === currentPage ? "bg-primary text-white" : "bg-gray-200"
-            } rounded`}
+          className={`border-none w-3 h-3 mr-2 text-dark ${i === currentPage ? "bg-gray" : "bg-grey-10"
+            } rounded-xs`}
         >
           {i}
         </button>,
@@ -84,7 +84,7 @@ const AssessmentHistory: React.FC<AssessmentHistoryProps> = ({
               <td className="text-center p-10">{history.average_score}</td>
               <td className="text-center">
                 <li
-                  className="border border-primary text-primary rounded-sm text-12 bg-primary-10 p-val"
+                  className="w-10 border border-primary text-primary rounded-sm text-12 bg-primary-10 p-val"
                   style={{ "--p": "10px" } as React.CSSProperties}
                 >
                   {history.status}
@@ -92,7 +92,7 @@ const AssessmentHistory: React.FC<AssessmentHistoryProps> = ({
               </td>
               <td className="w-15 text-center">
                 <li
-                  className="text-dark rounded-sm text-12 bg-lightSuccess p-val"
+                  className="w-80p text-dark rounded-sm text-12 bg-lightSuccess p-val"
                   style={{ "--p": "10px" } as React.CSSProperties}
                 >
                   {history.comment}
@@ -108,8 +108,12 @@ const AssessmentHistory: React.FC<AssessmentHistoryProps> = ({
           ))}
         </tbody>
       </table>
-      <div className="h-4 text-dark text-center">
-        {renderPaginationButtons()}
+      <br />
+      <div className="h-4 flex justify-around text-dark text-center">
+        <span>
+          Showing {totalPages} of {historyData.length}
+        </span>
+        <div>prev {renderPaginationButtons()} next</div>
       </div>
     </div>
   );

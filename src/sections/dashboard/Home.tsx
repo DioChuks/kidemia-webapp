@@ -12,7 +12,7 @@ import BellIcon from "../../components/icons/BellIcon";
 import TakeAssessmentModal from "../../components/modals/TakeAssessmentModal";
 import { Link } from "react-router-dom";
 import AssessmentHistory from "../../components/cards/AssessmentHistory";
-import historyData from "../../components/cards/HistoryData.ts";
+import historyTopicData from "../../components/cards/HistoryData.ts";
 import BarChart from "../../components/charts/BarChart.tsx";
 
 export interface MyCustomCSS extends CSSProperties {
@@ -136,7 +136,7 @@ function HomeDashboard() {
                 className="whitespace-no overflow-hidden text-40 sm-text-value text-white animate-typing"
                 style={{ "--textSmVal": "2rem" } as MyCustomCSS}
               >
-                Welcome {userData.email ?? "to Kidemia"}
+                Welcome Dami{" "}
               </h1>
               <p className="whitespace-no overflow-hidden text-20 text-white animate-typing">
                 What would you like to do?
@@ -296,7 +296,7 @@ function HomeDashboard() {
                   Topics
                 </button>
               </div>
-              <AssessmentHistory historyData={historyData} />
+              <AssessmentHistory historyData={historyTopicData} />
             </div>
           </div>
 

@@ -1,4 +1,3 @@
-
 import React from "react";
 
 interface BarChartProps {
@@ -9,13 +8,13 @@ interface BarChartProps {
 const BarChart: React.FC<BarChartProps> = ({ bars, titleId }) => {
   const getColorBasedOnValue = (value: number): string => {
     if (value <= 25) {
-      return '#C83042';
-    } else if (value > 25 && value < 40) {
-      return '#bf4c20';
-    } else if (value > 40 && value < 65) {
-      return '#f28729';
+      return "#C83042";
+    } else if (value > 25 && value <= 40) {
+      return "#bf4c20";
+    } else if (value > 40 && value <= 65) {
+      return "#f28729";
     } else {
-      return '#16732d';
+      return "#16732d";
     }
   };
 
@@ -32,10 +31,12 @@ const BarChart: React.FC<BarChartProps> = ({ bars, titleId }) => {
           <div
             key={index}
             className="item"
-            style={{
-              '--clr': getColorBasedOnValue(barValue),
-              '--val': `${barValue}%`,
-            } as React.CSSProperties}
+            style={
+              {
+                "--clr": getColorBasedOnValue(barValue),
+                "--val": `${barValue}`,
+              } as React.CSSProperties
+            }
           >
             <div className="label">{index + 1}</div>
             <div className="value">{barValue}%</div>
