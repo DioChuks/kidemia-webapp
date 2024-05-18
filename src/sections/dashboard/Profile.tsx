@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
     <div className="bg-brand-white h-max-screen">
       <header className="h-10p flex justify-between items-center bg-secondary mb-4 header">
         <div className="logo">
-          <Link to="/dashboard">
+          <Link to="/dashboard" className="w-inherit h-inherit">
             <img src={logo} alt="Kidemia" className="w-inherit h-inherit" />
           </Link>
         </div>
