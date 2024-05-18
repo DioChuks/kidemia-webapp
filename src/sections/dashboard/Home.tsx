@@ -11,6 +11,9 @@ import MenuIcon from "../../components/icons/MenuIcon";
 import BellIcon from "../../components/icons/BellIcon";
 import TakeAssessmentModal from "../../components/modals/TakeAssessmentModal";
 import { Link } from "react-router-dom";
+import AssessmentHistory from "../../components/cards/AssessmentHistory";
+import historyData from "../../components/cards/HistoryData.ts";
+import BarChart from "../../components/charts/BarChart.tsx";
 
 export interface MyCustomCSS extends CSSProperties {
   "--textSmVal": number | string;
@@ -194,7 +197,7 @@ function HomeDashboard() {
               </div>
             </div>
           </div>
-          <div className="w-max-screen h-auto flex flex-wrap justify-around items-center text-dark bg-primary gap-10 p-20 content-center mb-5">
+          <div className="w-max-screen h-auto flex flex-wrap justify-around items-center text-dark bg-primary gap-10 p-20 content-center">
             <div className="flex flex-col justify-evenly items-center analysis-box">
               <div className="flex flex-col justify-center items-center text-center analysis-info">
                 <div className="analysis-img">
@@ -254,6 +257,55 @@ function HomeDashboard() {
             </div>
           </div>
         </main>
+        <footer className="w-max-screen p-10 bg-brand-white">
+          <div className="flex sm-flex-col gap-5 chart-container">
+            <div
+              className="flex flex-col items-center w-half sm-w-value chart-box"
+              style={{ "--rWidthValue": "100%" } as React.CSSProperties}
+            >
+              <div className="chart-heading">
+                <h1 className="text-center text-dark chart-title">
+                  Recent Test Performance
+                </h1>
+              </div>
+              <BarChart bars={[30, 15, 5, 60, 90]} titleId="recent-test" />
+            </div>
+            <div
+              className="flex flex-col items-center w-half sm-w-value chart-box"
+              style={{ "--rWidthValue": "100%" } as React.CSSProperties}
+            >
+              <div className="chart-heading">
+                <h1 className="text-center text-dark chart-title">
+                  Recent Exam Performance
+                </h1>
+              </div>
+              <BarChart bars={[30, 45, 35, 55, 50]} titleId="recent-exam" />
+            </div>
+          </div>
+          <div id="assessment-history" className="w-max-screen mb-5">
+            <h2 className="text-dark mb-2">Assessment History</h2>
+            <div className="w-full flex flex-col items-center gap-5">
+              <div id="Frame1000001375" className="flex gap-5">
+                <button
+                  id="historySubject"
+                  className="btn btn-primary opacity-d5 sm-btn"
+                >
+                  Subjects
+                </button>
+                <button id="historyTopic" className="btn btn-primary sm-btn">
+                  Topics
+                </button>
+              </div>
+              <AssessmentHistory historyData={historyData} />
+            </div>
+          </div>
+
+          <div className="dashboard-btn-box">
+            <Link to={"/dashboard"} className="btn btn-primary sm-btn">
+              Dashboard
+            </Link>
+          </div>
+        </footer>
       </div>
     </div>
   );
