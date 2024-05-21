@@ -15,6 +15,7 @@ const PickSubject: React.FC = () => {
   const [selectedSubjectId, setSelectedSubjectId] = useState<number | null>(
     null,
   );
+  const [validationMsg, setValidationMsg] = useState("");
 
   useEffect(() => {
     if (type !== "test" && type !== "exam") {
@@ -27,9 +28,12 @@ const PickSubject: React.FC = () => {
   };
 
   const handleContinueClick = () => {
-    if (selectedSubjectId) {
-      navigate(`/pick/${selectedSubjectId}/topic/${type}`);
+    if (!selectedSubjectId) {
+      setValidationMsg("Pick a subject!!");
+      setTimeout(() => setValidationMsg(""), 2000);
+      return;
     }
+    navigate(`/pick/${selectedSubjectId}/topic/${type}`);
   };
 
   return (
@@ -109,6 +113,9 @@ const PickSubject: React.FC = () => {
               <h6 className="font-sm">Write on all subjects</h6>
             </Link>
           </div>
+        )}
+        {validationMsg && (
+          <div className="w-full text-center text-red">{validationMsg}</div>
         )}
         <div className="w-full inline-flex justify-center items-center pick-subjects">
           <section className="h-auto">
