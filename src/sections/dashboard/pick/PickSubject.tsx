@@ -46,13 +46,12 @@ const PickSubject: React.FC = () => {
               <LeftArrowIcon /> Back
             </Link>
           )}
-          <Link
-            to="#"
+          <button
             className="btn btn-primary sm-btn"
             onClick={handleContinueClick}
           >
             Continue <RightArrowIcon />
-          </Link>
+          </button>
         </div>
         {type === "test" ? (
           <div className="flex flex-col items-center gap-5">
