@@ -48,7 +48,7 @@ const TakeAssessmentModal: React.FC<ModalProps> = ({
           >
             cancel
           </button>
-          <Link to={`/pick-subject/${type}`} className="btn btn-primary sm-btn">
+          <Link to={`/pick/${type}/subject`} className="btn btn-primary sm-btn">
             continue
           </Link>
         </div>

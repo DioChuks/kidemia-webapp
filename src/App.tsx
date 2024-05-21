@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Landing from "./sections/Landing";
 import ForgotPassword from "./routes/ForgotPassword";
 import ChangePassword from "./routes/ChangePassword";
+import PickSubject from "./sections/dashboard/pick/PickSubject";
 
 function App() {
   return (
@@ -37,6 +38,14 @@ function App() {
             element={
               <PrivateRoute>
                 <HomeDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/pick/:type/subject"
+            element={
+              <PrivateRoute>
+                <PickSubject />
               </PrivateRoute>
             }
           />
