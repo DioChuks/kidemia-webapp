@@ -15,6 +15,7 @@ import ForgotPassword from "./routes/ForgotPassword";
 import ChangePassword from "./routes/ChangePassword";
 import PickSubject from "./sections/dashboard/pick/PickSubject";
 import PickTopic from "./sections/dashboard/pick/PickTopic";
+import ReadyScreen from "./sections/dashboard/ReadyScreen";
 
 function App() {
   return (
@@ -55,6 +56,14 @@ function App() {
             element={
               <PrivateRoute>
                 <PickTopic />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/getting/:subjectId/ready/:type/for/:asId"
+            element={
+              <PrivateRoute>
+                <ReadyScreen />
               </PrivateRoute>
             }
           />

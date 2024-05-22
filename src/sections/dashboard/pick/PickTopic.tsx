@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { topics } from "./TopicData";
 import Loading from "../../../components/modals/Loading";
 import Logo2 from "../../../assets/images/logo2.png";
+import toast, { Toaster } from "react-hot-toast";
 
 const PickTopic: React.FC = () => {
   const { type = "", subjectId = "" } = useParams<{
@@ -12,7 +13,6 @@ const PickTopic: React.FC = () => {
   }>();
   const navigate = useNavigate();
   const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
-  const [validationMsg, setValidationMsg] = useState<string>("");
 
   setTimeout(() => {
     const loadingMode = document.getElementById("loadingMode");
@@ -31,8 +31,7 @@ const PickTopic: React.FC = () => {
   const handleContinueClick = async (e: React.FormEvent) => {
     e.preventDefault();
     if (selectedTopics.length === 0) {
-      setValidationMsg("Please select at least one topic!👀");
-      setTimeout(() => setValidationMsg(""), 2000);
+      toast.error("Please select at least one topic!");
       return;
     }
 
@@ -65,6 +64,7 @@ const PickTopic: React.FC = () => {
       }, 2500);
     } catch (error) {
       console.error("Error sending form data:", error);
+      toast.error("An error occured!");
     }
   };
 
@@ -100,13 +100,6 @@ const PickTopic: React.FC = () => {
           <input type="hidden" name="subject" value={subjectId} />
           <input type="hidden" name="view" value={type} />
           <div className="flex justify-evenly flex-wrap gap-10 m-10 sm-topics-gap">
-            <div
-              id="validationMsg"
-              className="w-full text-center mt-4"
-              style={{ color: "red" }}
-            >
-              {validationMsg}
-            </div>
             {topics.map((topic, ii) => (
               <div
                 key={ii}
@@ -132,6 +125,7 @@ const PickTopic: React.FC = () => {
         </div>
       </form>
       <Loading />
+      <Toaster />
     </div>
   );
 };

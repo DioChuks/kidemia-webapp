@@ -8,6 +8,7 @@ import Logo2 from "../../../assets/images/logo2.png";
 import LogoPro from "../../../assets/images/logo-pro.png";
 import ClockImg from "../../../assets/images/image 3.png";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const PickSubject: React.FC = () => {
   const { type } = useParams();
@@ -15,7 +16,6 @@ const PickSubject: React.FC = () => {
   const [selectedSubjectId, setSelectedSubjectId] = useState<number | null>(
     null,
   );
-  const [validationMsg, setValidationMsg] = useState("");
 
   useEffect(() => {
     if (type !== "test" && type !== "exam") {
@@ -29,8 +29,7 @@ const PickSubject: React.FC = () => {
 
   const handleContinueClick = () => {
     if (!selectedSubjectId) {
-      setValidationMsg("Pick a subject!!");
-      setTimeout(() => setValidationMsg(""), 2000);
+      toast.error("Pick a subject!");
       return;
     }
     navigate(`/pick/${selectedSubjectId}/topic/${type}`);
@@ -114,9 +113,7 @@ const PickSubject: React.FC = () => {
             </Link>
           </div>
         )}
-        {validationMsg && (
-          <div className="w-full text-center text-red">{validationMsg}</div>
-        )}
+
         <div className="w-full inline-flex justify-center items-center pick-subjects">
           <section className="h-auto">
             <div className="w-full h-full flex justify-center items-center p-10 gap-10">
@@ -140,6 +137,7 @@ const PickSubject: React.FC = () => {
           </section>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
