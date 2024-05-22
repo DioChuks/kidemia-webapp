@@ -35,6 +35,11 @@ const PickTopic: React.FC = () => {
       return;
     }
 
+    if (selectedTopics.length >= 5) {
+      toast.error("Not more than 5 topics!");
+      return;
+    }
+
     // Add your loading state or open modal logic here.
     // Replace with your actual loading state management
     const modal = document.getElementById("modal");
