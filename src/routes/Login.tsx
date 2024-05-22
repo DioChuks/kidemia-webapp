@@ -6,6 +6,7 @@ import MailIcon from "../components/icons/MailIcon";
 import ScanIcon from "../components/icons/ScanIcon";
 import logo2 from "../assets/images/logo2.png";
 import googleLogo from "../assets/images/google.png";
+import toast from "react-hot-toast";
 
 export interface MyCustomCSS extends CSSProperties {
   "--rWidthValue": string;
@@ -26,6 +27,10 @@ const LoginPage: React.FC = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const handleGoogleAuth = () => {
+    toast.error("Unavailable!");
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -142,6 +147,7 @@ const LoginPage: React.FC = () => {
                 id="registerWithGoogle"
                 className="w-full flex items-center gap-10 p-10 bg-white bg-hover font-xs rounded-sm border-none cursor-pointer transition-all"
                 style={{ "--bgHoverColor": "#f7f7f7" } as MyCustomCSS}
+                onClick={handleGoogleAuth}
               >
                 <img src={googleLogo} alt="google-logo" /> Continue with Google
               </a>
