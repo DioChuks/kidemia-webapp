@@ -21,6 +21,7 @@ import AdminLayout from "./sections/admin/Layout";
 import Report from "./sections/admin/category/Report";
 import SubjectSelection from "./sections/admin/category/SubjectSelection";
 import NewQuestion from "./sections/admin/category/NewQuestion";
+import ErrorPage from "./routes/Error";
 
 function App() {
   return (
@@ -84,7 +85,9 @@ function App() {
             <Route path="new-question/:subjectId" element={<NewQuestion/>}/>
           </Route>
           <Route path="/admin/*" element={<Navigate to="/admin/login" replace />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/dashboard/*" element={<Navigate to="/login" replace />} />
+          <Route path="/error" element={<ErrorPage/>}/>
+          <Route path="*" element={<Navigate to="/error" replace />} />
         </Routes>
       </Router>
     </AuthProvider>

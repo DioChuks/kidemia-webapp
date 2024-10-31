@@ -5,16 +5,18 @@ import Sidebar from '../../components/admin/Sidebar';
 import Modal from '../../components/admin/SubjectModal';
 import { Outlet } from 'react-router-dom';
 import PlusIcon from '../../components/icons/Plus';
+import Loader from '../../components/layouts/Loader';
 
 const AdminLayout: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
+    const loader = document.querySelector('.loader-container');
     const preloader = document.querySelector('.preloader');
     const app = document.getElementById('app');
 
-    if (preloader) preloader.classList.add('hidden');
+    if (preloader) setTimeout(() => {preloader.classList.add('hidden'); loader?.classList.add('hidden')}, 1500);
     if (app) {
       app.classList.remove('hidden');
       app.classList.add('visible');
@@ -33,6 +35,10 @@ const AdminLayout: React.FC = () => {
   const currentMessage = routeMessages[location.pathname] || 'Hello, Admin';
 
   return (
+    <>
+    <div className='w-full h-full z-1 fixed bg-semi-black loader-container'>
+      <Loader/>
+    </div>
     <div id="app" className="hidden">
       <div className="h-max-screen">
         <Header />
@@ -67,6 +73,7 @@ const AdminLayout: React.FC = () => {
       {isModalOpen && <Modal onClose={handleModalToggle} />}
     </div>
     </div>
+    </>
   );
 };
 
