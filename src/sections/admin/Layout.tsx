@@ -28,7 +28,9 @@ const AdminLayout: React.FC = () => {
     '/admin/dashboard': 'Hello, Admin',
     '/admin/dashboard/report': 'Reports Overview',
     '/admin/dashboard/subjects': 'Subjects Management',
-    '/admin/dashboard/add-question': 'Add New Question',
+    '/admin/dashboard/add-question': 'Subject',
+    '/admin/dashboard/new-question': 'New Question',
+    '/admin/dashboard/upload-subjects': 'Upload Subjects',
   };
 
   // Get the message based on the current pathname or set a default

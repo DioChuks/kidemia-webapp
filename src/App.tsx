@@ -22,6 +22,10 @@ import Report from "./sections/admin/category/Report";
 import SubjectSelection from "./sections/admin/category/SubjectSelection";
 import NewQuestion from "./sections/admin/category/NewQuestion";
 import ErrorPage from "./routes/Error";
+import UploadSubjects from "./sections/admin/category/ImportSubjects";
+import Subjects from "./sections/admin/category/Subjects";
+import ShowSubject from "./sections/admin/category/Subject";
+import AdminPrivateRoute from "./contexts/AdminPrivateRoute";
 
 function App() {
   return (
@@ -76,13 +80,15 @@ function App() {
           />
           <Route
             path="/admin/dashboard"
-            element={<PrivateRoute><AdminLayout/></PrivateRoute>}
+            element={<AdminPrivateRoute><AdminLayout/></AdminPrivateRoute>}
           >
             <Route index element={<Report/>} />
             <Route path="report" element={<Report/>} />
-            <Route path="subjects" element={<h1>Subjects</h1>}/>
+            <Route path="subjects" element={<Subjects/>}/>
+            <Route path="subject/:subjectId" element={<ShowSubject/>}/>
             <Route path="add-question" element={<SubjectSelection/>}/>
             <Route path="new-question/:subjectId" element={<NewQuestion/>}/>
+            <Route path="upload-subjects" element={<UploadSubjects/>}/>
           </Route>
           <Route path="/admin/*" element={<Navigate to="/admin/login" replace />} />
           <Route path="/dashboard/*" element={<Navigate to="/login" replace />} />
