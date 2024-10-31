@@ -14,9 +14,9 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => (
       <input type="text" className="w-3-quarts h-4 pl-1 bg-primary-grad2 border-none outline-none rounded-sm" name="subject_name" id="subjectName" placeholder="Name of subject"/>
       <select className="w-3-quarts h-4 pl-1 bg-primary-grad2 border-none outline-none rounded-sm" name="subject_category" id="subjectCategory">
         <option value="0">Category of subject</option>
-        <option value="common entrance">Common Entrance</option>
-        <option value="junior waec">Junior WAEC</option>
-        <option value="senior waec">Senior WAEC</option>
+        <option value="common-entrance">Common Entrance</option>
+        <option value="junior-waec">Junior WAEC</option>
+        <option value="senior-waec">Senior WAEC</option>
       </select>
       <input className="w-3-quarts h-4 pl-1 bg-primary-grad2 text-14 border-none outline-none rounded-sm shadow-sm" id="subjectColor" name="subject_color" placeholder="Color of subject" data-huebee='{ "saturations": 3, "hues":6, "shades":3 }' />
       <div className="w-3-quarts flex items-center justify-between gap-5">
