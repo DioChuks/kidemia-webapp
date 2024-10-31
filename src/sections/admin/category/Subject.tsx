@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SearchIcon from '../../../components/icons/Search';
 import FilterIcon from '../../../components/icons/Filter';
+import PlusIcon from '../../../components/icons/Plus';
+import EditModal from '../../../components/admin/EditSubjectModal';
 
 // Define interfaces for Topic and SubjectData
 interface Topic {
@@ -21,6 +23,8 @@ const ShowSubject: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Simulate fetching subject data based on subjectId
   useEffect(() => {
@@ -92,6 +96,8 @@ const ShowSubject: React.FC = () => {
     }
   };
 
+  const handleModalToggle = () => setIsModalOpen(!isModalOpen);
+
   // Render loading state or subject data
   if (loading) {
     return <div>Loading...</div>;
@@ -102,6 +108,13 @@ const ShowSubject: React.FC = () => {
   }
 
   return (
+    <>
+    <div className='text-right flex justify-between'>
+    <button onClick={() => navigate(-1)} className='bg-transparent cursor-pointer rounded-full w-fit font-2xl text-25'>&larr;</button>
+        <p className='text-right flex items-center gap-5 p-10 border-none outline-none bg-primary-10 bg-hover text-primary rounded-sm cursor-pointer transition-all w-fit'
+        style={{"--bgHoverColor": "#555"} as React.CSSProperties} onClick={handleModalToggle}><PlusIcon/> Edit Subject</p>
+    </div>
+    <br />
     <div className="w-full h-auto flex flex-col justify-center items-center text-dark bg-white rounded-sm shadow-md">
       <div className="w-full flex justify-end items-center gap-10 p-10">
         <div className="w-20 h-4 flex items-center justify-center gap-5 rounded-xs bg-inputGrey">
@@ -182,6 +195,8 @@ const ShowSubject: React.FC = () => {
         </table>
       </div>
     </div>
+    {isModalOpen && <EditModal subject={{name: "Something", uuid: "4f948f-43fh45-385h-598fh", category: "junior-waec" }} onClose={handleModalToggle}/>}
+    </>
   );
 };
 
