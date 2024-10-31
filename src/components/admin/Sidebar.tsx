@@ -4,7 +4,7 @@ import Grid from '../icons/Grid';
 import ReportLineIcon from '../icons/ReportLine';
 
 const Sidebar: React.FC = () => (
-  <div className="w-15p h-full flex flex-col gap-10 items-start bg-white text-16 text-secondary p-5">
+  <div className="md-d-flex w-15p h-full hidden flex-col gap-10 items-start bg-white text-16 text-secondary p-5">
     <div className="flex items-center gap-5 text-secondary mt-5">
         <Grid/> <span>Dashboard</span>
     </div>

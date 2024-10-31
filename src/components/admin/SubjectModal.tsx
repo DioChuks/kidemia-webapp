@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import 'huebee/dist/huebee.min.css';
 
 type ModalProps = {
   onClose: () => void;

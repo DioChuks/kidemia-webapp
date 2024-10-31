@@ -1,6 +1,8 @@
 import React from 'react';
 import Logo from '../icons/Logo';
 import BellIcon from '../icons/BellIcon';
+import MenuIcon from '../icons/MenuIcon';
+import BottomBar from './BottomBar';
 
 const Header: React.FC = () => (
   <header className="h-10p flex justify-between items-center bg-secondary header">
@@ -20,6 +22,8 @@ const Header: React.FC = () => (
             <li className="text-white nav-item">Admin</li>
           </ul>
         </nav>
+        <MenuIcon/>
+        <BottomBar/>
   </header>
 );
 

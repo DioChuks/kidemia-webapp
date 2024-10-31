@@ -33,7 +33,7 @@ const AdminLayout: React.FC = () => {
           <div className="w-full h-full flex-flex-col justify-evenly items-center gap-10">
           <div className="h-15p flex justify-between items-center gap-5">
             <h3 className="text-dark">Hello, Admin</h3>
-            <div className="flex items-center gap-5">
+            <div className="flex md-flex-row flex-col items-center gap-5">
             <div className="flex items-center">
               <h5 className="text-dark">Category:</h5>
               <select name="category" id="usersCategory" className="border-none outline-none bg-transparent">
@@ -63,7 +63,7 @@ const AdminLayout: React.FC = () => {
             ))}
             </div>
             <br/>
-            <div className="w-full h-half flex items-center gap-10">
+            <div className="w-full h-half flex md-flex-row flex-col items-center gap-10">
               <BarChart bars={[30,15,5,60,90]} titleId='recent-test' className='bg-white rounded-sm'/>
               <BarChart bars={[30,45,35,55,50]} titleId='recent-exam' className='bg-white rounded-sm'/>
             </div>
