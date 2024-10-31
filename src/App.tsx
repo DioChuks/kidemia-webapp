@@ -9,13 +9,15 @@ import Register from "./routes/Register";
 import HomeDashboard from "./sections/dashboard/Home";
 import Profile from "./sections/dashboard/Profile";
 import { AuthProvider } from "./contexts/AuthContext";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./contexts/PrivateRoute";
 import Landing from "./sections/Landing";
 import ForgotPassword from "./routes/ForgotPassword";
 import ChangePassword from "./routes/ChangePassword";
 import PickSubject from "./sections/dashboard/pick/PickSubject";
 import PickTopic from "./sections/dashboard/pick/PickTopic";
 import ReadyScreen from "./sections/dashboard/ReadyScreen";
+import AdminLoginPage from "./routes/admin/Login";
+import AdminLayout from "./sections/admin/Layout";
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
@@ -66,6 +69,10 @@ function App() {
                 <ReadyScreen />
               </PrivateRoute>
             }
+          />
+          <Route
+            path="/admin/dashboard"
+            element={<AdminLayout/>}
           />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>

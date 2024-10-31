@@ -1,7 +1,7 @@
 import React, { CSSProperties, useState } from 'react';
 import { Link } from 'react-router-dom';
-import StudentStep from './steps/StudentStep';
-import SchoolStep from './steps/SchoolStep';
+import StudentStep from '../components/steps/StudentStep';
+import SchoolStep from '../components/steps/SchoolStep';
 import Logo from '../assets/images/KIDEMIA LOGO pro.png';
 import Student from '../assets/images/Student.png';
 import School from '../assets/images/School.png';

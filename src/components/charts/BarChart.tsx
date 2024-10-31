@@ -3,9 +3,10 @@ import React from "react";
 interface BarChartProps {
   bars: number[];
   titleId: string;
+  className?: string
 }
 
-const BarChart: React.FC<BarChartProps> = ({ bars, titleId }) => {
+const BarChart: React.FC<BarChartProps> = ({ bars, titleId, className }) => {
   const getColorBasedOnValue = (value: number): string => {
     if (value <= 25) {
       return "#C83042";
@@ -19,7 +20,7 @@ const BarChart: React.FC<BarChartProps> = ({ bars, titleId }) => {
   };
 
   return (
-    <div className="flex flex-col items-end w-full text-dark chart-info-box">
+    <div className={`flex flex-col items-end w-full text-dark chart-info-box ${className}`}>
       {!titleId && (
         <select name="recent" id={titleId}>
           <option value="5">Last 5</option>

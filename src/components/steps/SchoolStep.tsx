@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import MailIcon from '../../components/icons/MailIcon';
-import ScanIcon from '../../components/icons/ScanIcon';
+import MailIcon from '../icons/MailIcon';
+import ScanIcon from '../icons/ScanIcon';
 import GoogleLogo from '../../assets/images/google.png';
 import { Link } from 'react-router-dom';
 

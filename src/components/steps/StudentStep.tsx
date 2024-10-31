@@ -3,6 +3,7 @@ import MailIcon from "../../components/icons/MailIcon";
 import ScanIcon from "../../components/icons/ScanIcon";
 import GoogleLogo from "../../assets/images/google.png";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 interface Purpose {
   id: number;
@@ -71,8 +72,11 @@ const StudentStep: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    const toastId = toast.loading('processing...');
     try {
-      const response = await fetch("/api/register", {
+      console.log("User Data: \n");
+      console.log(userData);
+      const response = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,13 +87,15 @@ const StudentStep: React.FC = () => {
       if (response.ok) {
         console.log("Registration successful");
         // Handle successful registration
-      } else {
-        console.error("Registration failed");
-        // Handle registration failure
+        toast.remove(toastId);
+        toast.success('Success');
+        // redirect to login
       }
     } catch (error) {
       console.error("Error during registration:", error);
       // Handle network or other errors
+      toast.remove(toastId);
+      toast.error("Error occurred!");
     }
   };
 
@@ -293,6 +299,7 @@ const StudentStep: React.FC = () => {
       style={{ "--rWidthValue": "100%" } as React.CSSProperties}
     >
       {renderStep()}
+      <Toaster/>
     </div>
   );
 };
