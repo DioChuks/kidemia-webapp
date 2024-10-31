@@ -18,6 +18,9 @@ import PickTopic from "./sections/dashboard/pick/PickTopic";
 import ReadyScreen from "./sections/dashboard/ReadyScreen";
 import AdminLoginPage from "./routes/admin/Login";
 import AdminLayout from "./sections/admin/Layout";
+import Report from "./sections/admin/category/Report";
+import SubjectSelection from "./sections/admin/category/SubjectSelection";
+import NewQuestion from "./sections/admin/category/NewQuestion";
 
 function App() {
   return (
@@ -72,8 +75,15 @@ function App() {
           />
           <Route
             path="/admin/dashboard"
-            element={<AdminLayout/>}
-          />
+            element={<PrivateRoute><AdminLayout/></PrivateRoute>}
+          >
+            <Route index element={<Report/>} />
+            <Route path="report" element={<Report/>} />
+            <Route path="subjects" element={<h1>Subjects</h1>}/>
+            <Route path="add-question" element={<SubjectSelection/>}/>
+            <Route path="new-question/:subjectId" element={<NewQuestion/>}/>
+          </Route>
+          <Route path="/admin/*" element={<Navigate to="/admin/login" replace />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </Router>

@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => (
       <input className="w-3-quarts h-4 pl-1 bg-primary-grad2 text-14 border-none outline-none rounded-sm shadow-sm" id="subjectColor" name="subject_color" placeholder="Color of subject" data-huebee='{ "saturations": 3, "hues":6, "shades":3 }' />
       <div className="w-3-quarts flex items-center justify-between gap-5">
             <button className="w-half p-10 border-none outline-none rounded-sm bg-primary-grad22 text-primary cursor-pointer" type="submit">Save and Close</button>
-            <Link to="/admin/add-question" className="w-half p-10 border-none outline-none rounded-sm bg-primary text-center text-white cursor-pointer">Add Question</Link>
+            <Link to="/admin/dashboard/add-question" className="w-half p-10 border-none outline-none rounded-sm bg-primary text-center text-white cursor-pointer" onClick={onClose}>Add Question</Link>
         </div>
     </form>
   </div>

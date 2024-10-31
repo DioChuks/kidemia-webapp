@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../../components/admin/Header';
 import Sidebar from '../../components/admin/Sidebar';
 import Modal from '../../components/admin/SubjectModal';
-import cardConfig from './data/Card';
-import BarChart from '../../components/charts/BarChart';
-import CardInfoBox from '../../components/cards/CardInfoBox';
+import { Outlet } from 'react-router-dom';
 import PlusIcon from '../../components/icons/Plus';
 
 const AdminLayout: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const preloader = document.querySelector('.preloader');
@@ -22,6 +22,15 @@ const AdminLayout: React.FC = () => {
   }, []);
 
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
+  const routeMessages: { [key: string]: string } = {
+    '/admin/dashboard': 'Hello, Admin',
+    '/admin/dashboard/report': 'Reports Overview',
+    '/admin/dashboard/subjects': 'Subjects Management',
+    '/admin/dashboard/add-question': 'Add New Question',
+  };
+
+  // Get the message based on the current pathname or set a default
+  const currentMessage = routeMessages[location.pathname] || 'Hello, Admin';
 
   return (
     <div id="app" className="hidden">
@@ -30,43 +39,28 @@ const AdminLayout: React.FC = () => {
         <div className="w-full h-90p flex justify-between gap-5">
           <Sidebar />
           <div className="w-85p h-full flex flex-col gap-5 items-center p-10 ml-5 mr-5 overflow-auto">
-          <div className="w-full h-full flex-flex-col justify-evenly items-center gap-10">
-          <div className="h-15p flex justify-between items-center gap-5">
-            <h3 className="text-dark">Hello, Admin</h3>
-            <div className="flex md-flex-row flex-col items-center gap-5">
-            <div className="flex items-center">
-              <h5 className="text-dark">Category:</h5>
-              <select name="category" id="usersCategory" className="border-none outline-none bg-transparent">
-                <option value="1">Common Entrance</option>
-                <option value="2">Junior WAEC</option>
-                <option value="3">Senior WAEC</option>
-              </select>
+            <div className="w-full h-full flex-flex-col justify-evenly items-center gap-10">
+              <div className="h-15p flex justify-between items-center gap-5">
+                <h3 className="text-dark">{currentMessage}</h3>
+                <div className="flex md-flex-row flex-col items-center gap-5">
+                  <div className="flex items-center">
+                    <h5 className="text-dark">Category:</h5>
+                    <select name="category" id="usersCategory" className="border-none outline-none bg-transparent">
+                      <option value="1">Common Entrance</option>
+                      <option value="2">Junior WAEC</option>
+                      <option value="3">Senior WAEC</option>
+                    </select>
+                  </div>
+                  <button
+                      id="openBtn"
+                      className="flex items-center gap-5 p-10 border-none outline-none bg-primary bg-hover text-white rounded-sm cursor-pointer transition-all" style={{"--bgHoverColor":"var(--infoColor)"} as React.CSSProperties}
+                      onClick={handleModalToggle}
+                      ><PlusIcon/>
+                      Add Subject
+                  </button>
+                </div>
               </div>
-            <button
-                id="openBtn"
-                className="flex items-center gap-5 p-10 border-none outline-none bg-primary bg-hover text-white rounded-sm cursor-pointer transition-all" style={{"--bgHoverColor":"var(--infoColor)"} as React.CSSProperties}
-                onClick={handleModalToggle}
-                ><PlusIcon/>
-                Add Subject
-            </button>
-              </div>
-            </div>
-            <div className="w-full flex justify-between items-center gap-5 flex-wrap">
-            {Object.entries(cardConfig).map(([key, config]) => (
-                <CardInfoBox
-                  icon={config.icon}
-                  title={config.title}
-                  amount={config.amount}
-                  className={config.class}
-                  type={config.type}
-                  key={key}/>
-            ))}
-            </div>
-            <br/>
-            <div className="w-full h-half flex md-flex-row flex-col items-center gap-10">
-              <BarChart bars={[30,15,5,60,90]} titleId='recent-test' className='bg-white rounded-sm'/>
-              <BarChart bars={[30,45,35,55,50]} titleId='recent-exam' className='bg-white rounded-sm'/>
-            </div>
+            <Outlet/>
           </div>
         </div>
       </div>
