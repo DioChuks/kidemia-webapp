@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/admin/Header';
 import Sidebar from '../../components/admin/Sidebar';
-import Modal from '../../components/admin/Modal';
+import Modal from '../../components/admin/SubjectModal';
 import cardConfig from './data/Card';
 import BarChart from '../../components/charts/BarChart';
 import CardInfoBox from '../../components/cards/CardInfoBox';
