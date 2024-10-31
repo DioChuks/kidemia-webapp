@@ -46,8 +46,10 @@ const LoginPage: React.FC = () => {
       // });
 
       const userData = {
-        email: email,
-        password: password,
+        user: {
+          email: email,
+          password: password,
+        },
         token: "2y73|3838idcdd9qdjw9dh393739f8eiehd9ehfdj9w3dg83dhq9deihd",
       };
 
