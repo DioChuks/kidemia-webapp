@@ -44,7 +44,7 @@ const AdminLoginPage: React.FC = () => {
       };
 
       // Authenticate the user and set the user data in the authContext
-      // login(userData);
+      login(userData);
 
       // Redirect the user to the desired page after successful login
       setTimeout(() => {
