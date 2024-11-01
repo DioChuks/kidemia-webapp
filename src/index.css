@@ -785,6 +785,10 @@ select * {
     animation: shake 300ms;
 }
 
+.animate-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
 .animate-slideDown {
     animation: slideDown 0.4s linear;
 }
@@ -1806,6 +1810,18 @@ select * {
         transform: translateY(0px);
     }
 }
+
+@keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.7;
+    }
+}
+
 
 .top-section {
     background: linear-gradient(

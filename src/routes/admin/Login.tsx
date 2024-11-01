@@ -130,12 +130,6 @@ const AdminLoginPage: React.FC = () => {
                   required
                 />
               </div>
-              <Link
-                to="/forgot-password"
-                className="w-fit text-red text-hover-underline"
-              >
-                Forgot Password
-              </Link>
               <button
                 id="loginBtn"
                 className="w-full p-10 bg-primary text-white text-hover-color font-xs rounded-sm border-none cursor-pointer transition-all"
