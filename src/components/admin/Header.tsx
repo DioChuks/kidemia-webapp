@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../icons/Logo';
 import BellIcon from '../icons/BellIcon';
 import MenuIcon from '../icons/MenuIcon';
 import BottomBar from './BottomBar';
 
-const Header: React.FC = () => (
+const Header: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalToggle = () => setIsModalOpen(!isModalOpen);
+  return (
   <header className="h-10p flex justify-between items-center bg-secondary header">
     <Logo />
     {/* {{-- medium to large screen --}} */}
@@ -22,9 +25,10 @@ const Header: React.FC = () => (
             <li className="text-white nav-item">Admin</li>
           </ul>
         </nav>
-        <MenuIcon/>
-        <BottomBar/>
+        <span onClick={handleModalToggle}><MenuIcon/></span>
+        {isModalOpen && <BottomBar/>}
   </header>
-);
+  )
+};
 
 export default Header;

@@ -40,7 +40,7 @@ const NewQuestion: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col justify-between items-start gap-5 flex-wrap">
-        <div className="w-80p flex flex-col gap-5 relative bg-white rounded-xs p-5 shadow-md">
+        <div className="w-80p max-sm-w-full flex flex-col gap-5 relative bg-white rounded-xs p-5 shadow-md">
         <div className="w-full h-4 flex items-center justify-between">
             <h4>Question 1.</h4>
             <select name="topic" id="topic"
@@ -123,18 +123,18 @@ const NewQuestion: React.FC = () => {
             <TrashIcon/>
             <span>Delete</span>
             </div>
+          </div>
         </div>
-        </div>
-        <div className="w-80p flex items-center justify-end gap-10">
-        <div className="flex items-center gap-5 text-primary cursor-pointer">
-            <div className="flex items-center bg-primary text-white rounded-full">
-            <AddIcon/>
-            </div>
-            <span>Add Question</span>
-        </div>
-        <div className="h-3 flex items-center gap-5 bg-primary text-white p-5 rounded-xs cursor-pointer">
-            <span>Save and Continue</span>
-        </div>
+        <div className="w-80p max-sm-w-full flex items-center justify-end gap-10">
+          <div className="flex items-center gap-5 text-primary cursor-pointer">
+              <div className="flex items-center bg-primary text-white rounded-full">
+              <AddIcon/>
+              </div>
+              <span>Add Question</span>
+          </div>
+          <div className="h-3 sm-md-height flex items-center gap-5 bg-primary text-white p-5 rounded-xs cursor-pointer">
+              <span>Save and Continue</span>
+          </div>
         </div>
     </div>
   )

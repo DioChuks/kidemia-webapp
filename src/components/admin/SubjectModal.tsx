@@ -8,7 +8,7 @@ type ModalProps = {
 
 const Modal: React.FC<ModalProps> = ({ onClose }) => (
   <div className="fixed z-1 left-0 top-0 w-full h-full flex justify-center items-center overflow-auto bg-semi-black transition-all addSubjectModal">
-    <form className="relative w-half h-3-quarts flex flex-col items-center justify-evenly gap-5 bg-brand-white p-10 rounded-md modal-content animate-slideDown" method="post">
+    <form className="relative w-half max-sm-w-90p  h-3-quarts flex flex-col items-center justify-evenly gap-5 bg-brand-white p-10 rounded-md modal-content animate-slideDown" method="post">
       <span className="absolute w-3 h-3 flex justify-center items-center top-2 right-2 text-dark text-20 rounded-md border border-dark cursor-pointer hover:text-red-600" id="closeModal" onClick={onClose}>&times;</span>
       <h1 className="text-dark max-sm:text-sm">Add a <span className="text-secondary">Subject</span></h1>
       <input type="text" className="w-3-quarts h-4 pl-1 bg-primary-grad2 border-none outline-none rounded-sm" name="subject_name" id="subjectName" placeholder="Name of subject"/>

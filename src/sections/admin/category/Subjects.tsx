@@ -110,11 +110,10 @@ const Subjects: React.FC = () => {
     <>
     <p className='text-right'><Link to="/admin/dashboard/upload-subjects" className='text-right p-10 bg-primary text-white rounded-sm'><UploadIcon/> Upload Subjects</Link></p>
     <br />
-    <div className="w-full h-auto flex flex-col justify-center items-center text-dark bg-white rounded-sm shadow-md">
+    <div className="w-full max-sm-w-300 h-auto flex flex-col justify-center items-center text-dark bg-white rounded-sm shadow-md overflow-x-auto">
       <div className="w-full flex justify-end items-center gap-10 p-10">
         <div className="w-20 h-4 flex items-center justify-center gap-5 rounded-xs bg-inputGrey">
           <label htmlFor="searchSubject" className="h-inherit flex items-center">
-            {/* Replace with your search icon component */}
             <SearchIcon/>
           </label>
           <input

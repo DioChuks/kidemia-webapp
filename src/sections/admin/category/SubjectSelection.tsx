@@ -6,7 +6,7 @@ const SubjectSelection: React.FC = () => {
 
   return (
     <div className="w-full flex justify-between items-center gap-5 flex-wrap">
-      <div className="w-80p flex flex-col items-center gap-10 bg-white rounded-sm">
+      <div className="w-80p max-sm-w-full pt-1 flex flex-col items-center gap-10 bg-white rounded-sm">
         <h1 className="text-center text-primary">Select a Subject</h1>
         <div className="w-full flex flex-wrap bg-semi-transparent items-center gap-10 p-10">
           {subjects.map((subject) => (
