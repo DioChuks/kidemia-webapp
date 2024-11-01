@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import LeftArrowIcon from '../../../components/icons/LeftArrow'
 import UnionIcon from '../../../components/icons/Union'
 import AddIcon from '../../../components/icons/Add'
 import LinkIcon from '../../../components/icons/Link'
@@ -40,12 +39,6 @@ const NewQuestion: React.FC = () => {
       };
 
   return (
-    <>
-    <a href="/admin/dashboard/subjects"
-        className="w-2 h-2 flex items-center justify-center rounded-full text-dark border cursor-pointer">
-        <LeftArrowIcon/>
-    </a>
-    <br/>
     <div className="w-full flex flex-col justify-between items-start gap-5 flex-wrap">
         <div className="w-80p flex flex-col gap-5 relative bg-white rounded-xs p-5 shadow-md">
         <div className="w-full h-4 flex items-center justify-between">
@@ -144,7 +137,6 @@ const NewQuestion: React.FC = () => {
         </div>
         </div>
     </div>
-    </>
   )
 }
 

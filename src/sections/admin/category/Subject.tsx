@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import SearchIcon from '../../../components/icons/Search';
 import FilterIcon from '../../../components/icons/Filter';
 import PlusIcon from '../../../components/icons/Plus';
@@ -17,14 +17,13 @@ interface SubjectData {
 }
 
 const ShowSubject: React.FC = () => {
-    const { subjectId } = useParams<{ subjectId: string }>();
+  const { subjectId } = useParams<{ subjectId: string }>();
   const [subjectData, setSubjectData] = useState<SubjectData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
 
   // Simulate fetching subject data based on subjectId
   useEffect(() => {
@@ -110,7 +109,7 @@ const ShowSubject: React.FC = () => {
   return (
     <>
     <div className='text-right flex justify-between'>
-    <button onClick={() => navigate(-1)} className='bg-transparent cursor-pointer rounded-full w-fit font-2xl text-25'>&larr;</button>
+    {/* <button onClick={() => navigate(-1)} className='bg-transparent cursor-pointer rounded-full w-fit font-2xl text-25'>&larr;</button> */}
         <p className='text-right flex items-center gap-5 p-10 border-none outline-none bg-primary-10 bg-hover text-primary rounded-sm cursor-pointer transition-all w-fit'
         style={{"--bgHoverColor": "#555"} as React.CSSProperties} onClick={handleModalToggle}><PlusIcon/> Edit Subject</p>
     </div>

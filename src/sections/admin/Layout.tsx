@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/admin/Header';
 import Sidebar from '../../components/admin/Sidebar';
 import Modal from '../../components/admin/SubjectModal';
 import { Outlet } from 'react-router-dom';
 import PlusIcon from '../../components/icons/Plus';
 import Loader from '../../components/layouts/Loader';
+import LeftArrowIcon from '../../components/icons/LeftArrow';
 
 const AdminLayout: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loader = document.querySelector('.loader-container');
@@ -28,13 +30,12 @@ const AdminLayout: React.FC = () => {
     '/admin/dashboard': 'Hello, Admin',
     '/admin/dashboard/report': 'Reports Overview',
     '/admin/dashboard/subjects': 'Subjects Management',
-    '/admin/dashboard/add-question': 'Subject',
     '/admin/dashboard/new-question': 'New Question',
-    '/admin/dashboard/upload-subjects': 'Upload Subjects',
+    '/admin/dashboard/upload-subjects': 'Bulk Import Subjects',
   };
 
   // Get the message based on the current pathname or set a default
-  const currentMessage = routeMessages[location.pathname] || 'Hello, Admin';
+  const currentMessage = routeMessages[location.pathname];
 
   return (
     <>
@@ -49,7 +50,7 @@ const AdminLayout: React.FC = () => {
           <div className="w-85p h-full flex flex-col gap-5 items-center p-10 ml-5 mr-5 overflow-auto">
             <div className="w-full h-full flex-flex-col justify-evenly items-center gap-10">
               <div className="h-15p flex justify-between items-center gap-5">
-                <h3 className="text-dark">{currentMessage}</h3>
+                {currentMessage ? <h3 className="text-dark">{currentMessage}</h3> : <button onClick={() => navigate(-1)} className='w-4 h-4 flex items-center justify-center rounded-full text-dark border cursor-pointer'><LeftArrowIcon/></button>}
                 <div className="flex md-flex-row flex-col items-center gap-5">
                   <div className="flex items-center">
                     <h5 className="text-dark">Category:</h5>

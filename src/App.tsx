@@ -38,46 +38,11 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route
-            path="/user-profile"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <HomeDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/pick/:type/subject"
-            element={
-              <PrivateRoute>
-                <PickSubject />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/pick/:subjectId/topic/:type"
-            element={
-              <PrivateRoute>
-                <PickTopic />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/getting/:subjectId/ready/:type/for/:asId"
-            element={
-              <PrivateRoute>
-                <ReadyScreen />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/user-profile" element={<PrivateRoute><Profile /></PrivateRoute>}/>
+          <Route path="/dashboard" element={<PrivateRoute><HomeDashboard /></PrivateRoute>}/>
+          <Route path="/pick/:type/subject" element={<PrivateRoute><PickSubject /></PrivateRoute>}/>
+          <Route path="/pick/:subjectId/topic/:type" element={<PrivateRoute><PickTopic /></PrivateRoute>}/>
+          <Route path="/getting/:subjectId/ready/:type/for/:asId" element={<PrivateRoute><ReadyScreen /></PrivateRoute>}/>
           <Route
             path="/admin/dashboard"
             element={<AdminPrivateRoute><AdminLayout/></AdminPrivateRoute>}

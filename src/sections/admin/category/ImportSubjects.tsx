@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import UploadIcon from '../../../components/icons/Upload';
 
 const UploadSubjects: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -50,14 +51,26 @@ const UploadSubjects: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Upload CSV or Excel File</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="file" accept=".csv, .xls, .xlsx" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
-      </form>
+    <>
+      <div className="w-full flex flex-col justify-between items-start gap-5 flex-wrap">
+        <form onSubmit={handleSubmit} className="w-80p flex flex-col gap-5 relative bg-white rounded-xs p-5 shadow-md">
+          <h4>CSV or Excel File Allowed</h4>
+          <div className="w-full h-4 flex items-center justify-between">
+              <input type="file" name="subjects"
+              className="w-70p h-4 pl-1 border border-light-grey rounded-xs" accept=".csv, .xls, .xlsx" onChange={handleFileChange} />
+          </div>
+
+          <div className="w-full p-1 justify-end pr-1 items-center gap-10 inline-flex">
+              <div className="justify-start items-center gap-2 flex text-primary">
+              <button type='submit' className="flex items-center gap-5 p-10 border-none outline-none bg-primary bg-hover text-white rounded-sm cursor-pointer transition-all" style={{"--bgHoverColor":"var(--infoColor)"} as React.CSSProperties}>
+                <UploadIcon/>Upload
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
       <Toaster/>
-    </div>
+    </>
   );
 };
 
