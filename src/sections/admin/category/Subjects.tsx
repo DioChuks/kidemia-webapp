@@ -83,7 +83,7 @@ const Subjects: React.FC = () => {
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             >
-              <option value="1" selected>C.E</option>
+              <option value="1">C.E</option>
               <option value="2">JSCE</option>
               <option value="3">SSCE</option>
             </select>
@@ -102,7 +102,7 @@ const Subjects: React.FC = () => {
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <option value="recent" selected>Most recent</option>
+            <option value="recent">Most recent</option>
             <option value="alphabetically">Alphabetically</option>
             <option value="noOfQuestions">No. of Questions</option>
           </select>
@@ -132,7 +132,7 @@ const Subjects: React.FC = () => {
                   <span onClick={() => handleDelete(subject.uuid)} className="p-10 bg-light-wine text-wine rounded-sm border-none cursor-pointer">Delete</span>
                 </td>
               </tr>
-            )): <p className='py-3 mb-3'>Loading...</p>}
+            )): <tr className='py-3 mb-3'>Loading...</tr>}
           </tbody>
         </table>
       </div>

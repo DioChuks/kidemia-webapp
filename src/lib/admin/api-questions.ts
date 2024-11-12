@@ -1,4 +1,3 @@
-import { getAuthToken } from "../../utils/auth";
 import api from "../api";
 import ApiResponse from "../res";
 
@@ -24,25 +23,17 @@ interface NewQuestion {
     is_answer_multi: boolean;
 }
 
-const token = getAuthToken();
-
-const config = {
-    headers: {
-        Authorization: `Bearer ${token}`,
-    },
-};
-
 export const fetchQuestions = async (): Promise<Question[]> => {
-    const response = await api.get<ApiResponse<Question[]>>('/questions', config);
+    const response = await api.get<ApiResponse<Question[]>>('/questions');
     return response.data.data;
 }
 
 export const storeQuestion = async (data: FormData): Promise<NewQuestion> => {
-    const response = await api.post<ApiResponse<NewQuestion>>('/questions', data, config);
+    const response = await api.post<ApiResponse<NewQuestion>>('/questions', data);
     return response.data.data;
 }
 
 export const fetchQuestion = async (id:string|number): Promise<Question> => {
-    const response = await api.get<ApiResponse<Question>>(`/questions/${id}`, config);
+    const response = await api.get<ApiResponse<Question>>(`/questions/${id}`);
     return response.data.data;
 }

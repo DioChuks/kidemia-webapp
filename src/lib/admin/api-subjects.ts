@@ -1,7 +1,5 @@
-// api-subjects.ts
-import { getAuthToken } from "../../utils/auth";
 import api from "../api";
-import ApiResponse from "../res"; // Assuming this is where the base ApiResponse interface is located
+import ApiResponse from "../res";
 
 interface Subject {
     id: number;
@@ -33,18 +31,9 @@ interface GetSubjectStatsResponse extends ApiResponse<SubjectStats[]> {
     data: SubjectStats[];
 }
 
-const token = getAuthToken(); // Retrieve the token
-
-const config = {
-    headers: {
-        Authorization: `Bearer ${token}`,
-    },
-};
-
 const fileUploadConfig = {
     headers: {
         'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`
     },
 }
 
@@ -54,34 +43,33 @@ export const importSubjects = async (data: FormData) => {
 }
 
 export const fetchSubjects = async (): Promise<Subject[]> => {
-    const response = await api.get<ApiResponse<Subject[]>>('/subjects', config);
+    const response = await api.get<ApiResponse<Subject[]>>('/subjects');
     return response.data.data;
 }
 
 export const storeSubject = async (data: NewSubject): Promise<Subject> => {
-    const response = await api.post<ApiResponse<Subject>>('/subjects', data, config);
+    const response = await api.post<ApiResponse<Subject>>('/subjects', data);
     return response.data.data;
 }
 
 export const fetchSubject = async (id:string|number): Promise<Subject> => {
-    const response = await api.get<ApiResponse<Subject>>(`/subjects/${id}`, config);
+    const response = await api.get<ApiResponse<Subject>>(`/subjects/${id}`);
     return response.data.data;
 }
 
 export const fetchSubjectsByCategory = async (category_id: number): Promise<Subject[]> => {
-    const response = await api.get<ApiResponse<Subject[]>>(`/subjects?category_id=${category_id}`, config);
+    const response = await api.get<ApiResponse<Subject[]>>(`/subjects?category_id=${category_id}`);
     return response.data.data;
 };
 
 // Fetch subjects with their question and topic counts
 export const fetchSubjectStats = async (): Promise<GetSubjectStatsResponse> => {
-    const response = await api.get<GetSubjectStatsResponse>('/admin/report/subject-stats', config);
+    const response = await api.get<GetSubjectStatsResponse>('/admin/report/subject-stats');
     return response.data;
 };
 
 const deleteConfig = {
     headers: {
-        Authorization: `Bearer ${token}`,
         method: 'DELETE',
     },
 };

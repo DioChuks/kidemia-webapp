@@ -1,7 +1,5 @@
-// api-subjects.ts
-import { getAuthToken } from "../../utils/auth";
 import api from "../api";
-import ApiResponse from "../res"; // Assuming this is where the base ApiResponse interface is located
+import ApiResponse from "../res";
 
 interface Topic {
     id: number;
@@ -30,44 +28,35 @@ interface GetTopicStatsResponse extends ApiResponse<TopicStats[]> {
     data: TopicStats[];
 }
 
-const token = getAuthToken(); // Retrieve the token
-
-const config = {
-    headers: {
-    Authorization: `Bearer ${token}`, // Add the token to Authorization header
-    },
-};
-
 export const fetchTopics = async (): Promise<Topic[]> => {
-    const response = await api.get<ApiResponse<Topic[]>>('/topics', config);
+    const response = await api.get<ApiResponse<Topic[]>>('/topics');
     return response.data.data;
 }
 
 export const storeTopic = async (data: NewTopic): Promise<NewTopic> => {
-    const response = await api.post<ApiResponse<NewTopic>>('/topics', data, config);
+    const response = await api.post<ApiResponse<NewTopic>>('/topics', data);
     return response.data.data;
 }
 
 export const fetchTopicsBySubjectId = async (id: number): Promise<Topic[]> => {
-    const response = await api.get<ApiResponse<Topic[]>>(`/topics/subjects/${id}`, config);
+    const response = await api.get<ApiResponse<Topic[]>>(`/topics/subjects/${id}`);
     return response.data.data;
 }
 
 export const fetchTopic = async (id:string|number): Promise<Topic> => {
-    const response = await api.get<ApiResponse<Topic>>(`/topics/${id}`, config);
+    const response = await api.get<ApiResponse<Topic>>(`/topics/${id}`);
     return response.data.data;
 }
 
 // Fetch subjects with their question and topic counts
 export const fetchTopicStats = async (): Promise<GetTopicStatsResponse> => {
-    const response = await api.get<GetTopicStatsResponse>('/admin/report/topic-stats', config);
+    const response = await api.get<GetTopicStatsResponse>('/admin/report/topic-stats');
     return response.data;
 };
 
 const deleteConfig = {
     headers: {
-    Authorization: `Bearer ${token}`,
-    method: 'DELETE',
+        method: 'DELETE',
     },
 };
 
