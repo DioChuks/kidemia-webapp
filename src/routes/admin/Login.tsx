@@ -6,6 +6,8 @@ import MailIcon from "../../components/icons/MailIcon";
 import ScanIcon from "../../components/icons/ScanIcon";
 import logo2 from "../../assets/images/logo2.png";
 import toast, { Toaster } from "react-hot-toast";
+import { attemptLogin } from "../../lib/admin/api-login";
+import { handleRequestError } from "../../lib/api-error-handler";
 
 export interface MyCustomCSS extends CSSProperties {
   "--rWidthValue": string;
@@ -36,31 +38,21 @@ const AdminLoginPage: React.FC = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    const toastId = toast.loading('signing in...');
     try {
-      // const response = await axios.post("/api/admin/login", {
-      // email,
-      // password,
-      // });
-      toast.success('Redirecting...');
-
-      const userData = {
-        user: {
-          email: email,
-          password: password,
-        },
-        token: "24|3838idcdd9qdjw9dh393739f8eiehd9ehfdj9w3dg83dhq9deihd",
-      };
-
-      // Authenticate the user and set the user data in the authContext
+      const userData = await attemptLogin(email, password);
+      // Authenticate the admin and set the user data in the authContext
       login(userData);
+      
+      toast.remove(toastId);
+      toast.success("redirecting...");
 
       // Redirect the user to the desired page after successful login
       setTimeout(() => {
         navigate("/admin/dashboard");
-      },2500)
+      },2000)
     } catch (error) {
-      console.error("Login error:", error);
-      toast.error("An error occurred!");
+      handleRequestError(error, toastId);
     }
   };
 

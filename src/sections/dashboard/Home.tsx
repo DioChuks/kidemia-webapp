@@ -136,7 +136,7 @@ function HomeDashboard() {
                 className="whitespace-no overflow-hidden text-40 sm-text-value text-white animate-typing"
                 style={{ "--textSmVal": "2rem" } as MyCustomCSS}
               >
-                Welcome Dami{" "}
+                Welcome {userData.user.name}
               </h1>
               <p className="whitespace-no overflow-hidden text-20 text-white animate-typing">
                 What would you like to do?

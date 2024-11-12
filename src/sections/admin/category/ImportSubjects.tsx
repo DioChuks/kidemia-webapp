@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import UploadIcon from '../../../components/icons/Upload';
+import { importSubjects } from '../../../lib/admin/api-subjects';
 
 const UploadSubjects: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -30,23 +31,26 @@ const UploadSubjects: React.FC = () => {
       toast.error('Please select a file to upload.');
       return;
     }
+    const target = event.target as typeof event.target & {
+      category_id: { value: string };
+    };
+    const category_id = target.category_id.value;
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('upload_file', file);
+    formData.append('category_id', category_id);
+
+    const toastId = toast.loading('Uploading...');
 
     try {
-      const response = await axios.post('http://localhost:8000/api/admin/subjects/import', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      toast.success(response.data.message || 'Uploaded Successfully!');
+      const response = await importSubjects(formData);
+      toast.success(response || 'Uploaded Successfully!', {id:toastId});
       setFile(null); // Reset the file input after successful upload
     } catch (err) {
         if (err instanceof AxiosError) {
-            toast.error(err.response?.data?.message || 'An error occurred while uploading the file.');
+            toast.error(err.response?.data?.message || 'An error occurred while uploading the file.', { id: toastId});
         }
-        toast.error('Error occurred!');
+        toast.error('Error occurred!', { id: toastId});
     }
   };
 
@@ -55,6 +59,12 @@ const UploadSubjects: React.FC = () => {
       <div className="w-full flex flex-col justify-between items-start gap-5 flex-wrap">
         <form onSubmit={handleSubmit} className="w-80p flex flex-col gap-5 relative bg-white rounded-xs p-5 shadow-md">
           <h4>CSV or Excel File Allowed</h4>
+          <select className="w-70p h-4 pl-1 bg-primary-grad2 border-none outline-none rounded-sm" name="category_id" id="subjectCategory" required>
+            <option value={0}>Category of subject</option>
+            <option value={1}>Common Entrance</option>
+            <option value={2}>Junior WAEC</option>
+            <option value={3}>Senior WAEC</option>
+          </select>
           <div className="w-full h-4 flex items-center justify-between">
               <input type="file" name="subjects"
               className="w-70p h-4 pl-1 border border-light-grey rounded-xs" accept=".csv, .xls, .xlsx" onChange={handleFileChange} />

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import BellIcon from "../../components/icons/BellIcon";
 import CloudUploadIcon from "../../components/icons/CloudUploadIcon";
 import MenuIcon from "../../components/icons/MenuIcon";
 import logo from "../../assets/images/KIDEMIA LOGO pro 2.png";
 import userIcon from "../../assets/images/Ellipse 1.svg";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Profile: React.FC = () => {
+  const { userData } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [category, setCategory] = useState("Common Entrance");
 
@@ -87,7 +89,7 @@ const Profile: React.FC = () => {
               <label htmlFor="profilePicture">
                 <img
                   className="w-10 h-10 rounded-full border-3 border-primary Ellipse1"
-                  src={userIcon}
+                  src={userData.user.photo ?? userIcon}
                   alt="User Profile Picture"
                 />
               </label>
@@ -140,8 +142,8 @@ const Profile: React.FC = () => {
                     <input
                       className="w-full text-gray text-16 font-gothic font-xs Student border-none outline-none"
                       style={{ lineHeight: "22.40px", wordWrap: "break-word" }}
-                      value=""
-                      placeholder="Student"
+                      value={userData.user.name}
+                      placeholder="Liam Gabriel"
                     />
                   </div>
                   <button className="w-quarter flex justify-center items-center p-10 bg-primary rounded-xs border-none cursor-pointer Frame3">
@@ -178,7 +180,7 @@ const Profile: React.FC = () => {
                     <input
                       className="w-full text-gray text-16 font-gothic font-xs Student border-none outline-none"
                       style={{ lineHeight: "22.40px", wordWrap: "break-word" }}
-                      value=""
+                      value={userData.user.email}
                       placeholder="echempraise@gmail.com"
                     />
                   </div>

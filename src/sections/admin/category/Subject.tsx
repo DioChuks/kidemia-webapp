@@ -4,21 +4,36 @@ import SearchIcon from '../../../components/icons/Search';
 import FilterIcon from '../../../components/icons/Filter';
 import PlusIcon from '../../../components/icons/Plus';
 import EditModal from '../../../components/admin/EditSubjectModal';
+import { fetchSubject } from '../../../lib/admin/api-subjects';
+import { deleteTopic } from '../../../lib/admin/api-topics';
 
 // Define interfaces for Topic and SubjectData
 interface Topic {
-  id: string;
+  id: number;
+  uuid: string;
   name: string;
-  questions: string[];
+  subject_id: number;
 }
 
-interface SubjectData {
+interface Subject {
+  id: number;
+  name: string;
+  uuid: string;
+  category_id: number;
+  color: string;
   topics: Topic[];
 }
 
 const ShowSubject: React.FC = () => {
   const { subjectId } = useParams<{ subjectId: string }>();
-  const [subjectData, setSubjectData] = useState<SubjectData | null>(null);
+  const [subjectData, setSubjectData] = useState<Subject>({
+    id: 0,
+    name: "",
+    uuid: "",
+    category_id: 0,
+    color: "",
+    topics: []
+  });
   const [loading, setLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
@@ -27,72 +42,25 @@ const ShowSubject: React.FC = () => {
 
   // Simulate fetching subject data based on subjectId
   useEffect(() => {
-    const fetchSubjectData = async () => {
-      // Simulate a network request to fetch subject data
-      const simulatedApiResponse: SubjectData = {
-        topics: [
-          {
-            id: '1223',
-            name: 'Algebra',
-            questions: [
-              "What is x + 1 = 7? Find x",
-              "Solve 299 - (-299)",
-              "Solve 390 * (-390)",
-            ],
-          },
-          {
-            id: '1224',
-            name: 'Calculus',
-            questions: [
-              "What is the derivative of x²?",
-              "Integrate x from 0 to 1.",
-              "What is the limit of (1/x) as x approaches 0?",
-            ],
-          },
-          {
-            id: '1225',
-            name: 'Geometry',
-            questions: [
-              "What is the area of a circle?",
-              "What is the Pythagorean theorem?",
-              "Define a polygon.",
-            ],
-          },
-        ],
-      };
-
-      // Simulate a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Set the fetched data
-      setSubjectData(simulatedApiResponse);
-      setLoading(false);
-    };
-
-    fetchSubjectData();
-  }, [subjectId]);
-
-  const handleDelete = async (topicId: string) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this topic? Yes or No");
-
-    if (confirmDelete) {
+    const fetchedSubject = async () => {
+      setLoading(true);
       try {
-        // Send delete request to the API endpoint
-        const response = await fetch(`http://localhost:8000/api/admin/subjects/${subjectId}/topics/${topicId}/delete`, {
-          method: 'DELETE',
-        });
-
-        if (response.ok) {
-          // Handle successful deletion (e.g., update state, show message, etc.)
-          alert("Topic deleted successfully!");
-          // Optionally, re-fetch the subject data or update the state to remove the deleted topic
-        } else {
-          alert("Failed to delete the topic. Please try again.");
+        if (subjectId) {
+          const response = await fetchSubject(subjectId);
+          setSubjectData(response);
         }
       } catch (error) {
-        alert("An error occurred while deleting the topic. Please try again.");
+          console.error("Error fetching subjects:", error);
+      } finally {
+          setLoading(false);
       }
     }
+
+    fetchedSubject();
+  }, [subjectId]);
+
+  const handleDelete = async (topicId: number) => {
+    await deleteTopic(topicId);
   };
 
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
@@ -194,7 +162,7 @@ const ShowSubject: React.FC = () => {
         </table>
       </div>
     </div>
-    {isModalOpen && <EditModal subject={{name: "Something", uuid: "4f948f-43fh45-385h-598fh", category: "junior-waec" }} onClose={handleModalToggle}/>}
+    {isModalOpen && <EditModal subject={{name: subjectData.name, uuid: subjectData.uuid, category: subjectData.category_id }} onClose={handleModalToggle}/>}
     </>
   );
 };

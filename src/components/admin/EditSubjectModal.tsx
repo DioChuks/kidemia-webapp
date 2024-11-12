@@ -15,10 +15,10 @@ const EditModal: React.FC<ModalProps> = ({ onClose, subject }) => (
       <h1 className="text-dark max-sm:text-sm">Edit <span className="text-secondary">Subject</span></h1>
       <input type="text" className="w-3-quarts h-4 pl-1 bg-primary-grad2 border-none outline-none rounded-sm" name="subject_name" id="subjectName" placeholder="Name of subject" value={subject.name}/>
       <select className="w-3-quarts h-4 pl-1 bg-primary-grad2 border-none outline-none rounded-sm" name="subject_category" id="subjectCategory" defaultValue={subject.category}>
-        <option value="0">Category of subject</option>
-        <option value="common-entrance">Common Entrance</option>
-        <option value="junior-waec">Junior WAEC</option>
-        <option value="senior-waec">Senior WAEC</option>
+        <option value={0}>Category of subject</option>
+        <option value={1}>Common Entrance</option>
+        <option value={2}>Junior WAEC</option>
+        <option value={3}>Senior WAEC</option>
       </select>
       <input className="w-3-quarts h-4 pl-1 bg-primary-grad2 text-14 border-none outline-none rounded-sm shadow-sm" id="subjectColor" name="subject_color" placeholder="Color of subject" data-huebee='{ "saturations": 3, "hues":6, "shades":3 }' />
       <div className="w-3-quarts flex items-center justify-between gap-5">

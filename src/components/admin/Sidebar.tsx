@@ -14,6 +14,12 @@ const Sidebar: React.FC = () => (
     <Link to="/admin/dashboard/subjects" className="w-full flex justify-between items-center gap-5 text-dark">
       <h3>Subjects </h3><span>(12)</span>
     </Link>
+    <Link to="/admin/dashboard/new-topic" className="w-full flex justify-between items-center gap-5 text-dark">
+      <p> - Add Topic </p>
+    </Link>
+    <Link to="/admin/dashboard/add-question" className="w-full flex justify-between items-center gap-5 text-dark">
+      <p> - Add Question Wizard </p>
+    </Link>
   </div>
 );
 

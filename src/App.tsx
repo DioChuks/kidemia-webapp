@@ -26,6 +26,7 @@ import UploadSubjects from "./sections/admin/category/ImportSubjects";
 import Subjects from "./sections/admin/category/Subjects";
 import ShowSubject from "./sections/admin/category/Subject";
 import AdminPrivateRoute from "./contexts/AdminPrivateRoute";
+import Topics from "./sections/admin/category/NewTopic";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             <Route path="add-question" element={<SubjectSelection/>}/>
             <Route path="new-question/:subjectId" element={<NewQuestion/>}/>
             <Route path="upload-subjects" element={<UploadSubjects/>}/>
+            <Route path="new-topic" element={<Topics/>}/>
           </Route>
           <Route path="/admin/*" element={<Navigate to="/admin/login" replace />} />
           <Route path="/dashboard/*" element={<Navigate to="/login" replace />} />

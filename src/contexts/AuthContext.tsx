@@ -1,14 +1,27 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-interface AuthDataProps {
-    user: object,
+interface AuthUser {
+    user: {
+      id: number;
+      category_id?: number;
+      name: string;
+      email: string;
+      email_verified_at: null|Date;
+      photo: null|string;
+      otp: null|string;
+      category_status: boolean;
+      guardian_email: null|string;
+      role: string;
+      created_at: Date;
+      updated_at: Date; 
+    },
     token: string
 }
 
 interface AuthContextProps {
   isAuthenticated: boolean;
-  login: (userData: AuthDataProps) => void;
-  updateUser: (newData: Partial<AuthDataProps>) => void;
+  login: (userData: AuthUser) => void;
+  updateUser: (newData: Partial<AuthUser>) => void;
   logout: () => void;
   userData: any;
 }
@@ -31,18 +44,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return storedUserData ? true : false;
       });
 
-      const [userData, setUserData] = useState<AuthDataProps | object>(() => {
+      const [userData, setUserData] = useState<AuthUser | object>(() => {
         const storedUserData = sessionStorage.getItem('userData');
         return storedUserData ? JSON.parse(storedUserData) : {};
       });
 
-  const login = (data: AuthDataProps) => {
+  const login = (data: AuthUser) => {
     sessionStorage.setItem('userData', JSON.stringify(data));
     setIsAuthenticated(true);
     setUserData(data);
   };
 
-  const updateUser = (data: Partial<AuthDataProps>) => {
+  const updateUser = (data: Partial<AuthUser>) => {
     setUserData((prevState) => {
         if (!prevState) return {};
 
