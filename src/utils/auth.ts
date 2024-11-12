@@ -1,14 +1,11 @@
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+
 export const getAuthToken = (): string | null => {
-    const session = sessionStorage.getItem("userData");
-    if (session) {
-      try {
-        const parsedSession = JSON.parse(session); // Parse the session data
-        return parsedSession?.token || null; // Return token or null if not found
-      } catch (error) {
-        console.error("Error parsing userData:", error);
-        return null; // Return null if there's an error parsing the session data
-      }
+    const { userData } = useContext(AuthContext);
+    if (userData) {
+      return userData.token;
     }
-    return null; // Return null if no session is found
+    return null;
   };
   
