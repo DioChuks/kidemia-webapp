@@ -1,5 +1,4 @@
 import React, { CSSProperties, useState, useContext } from "react";
-// import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import MailIcon from "../components/icons/MailIcon";
@@ -7,6 +6,8 @@ import ScanIcon from "../components/icons/ScanIcon";
 import logo2 from "../assets/images/logo2.png";
 import googleLogo from "../assets/images/google.png";
 import toast from "react-hot-toast";
+import { attemptLogin } from "../lib/user/api-auth";
+import { handleRequestError } from "../lib/api-error-handler";
 
 export interface MyCustomCSS extends CSSProperties {
   "--rWidthValue": string;
@@ -35,31 +36,23 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Perform login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
-
+    const toastId = toast.loading('signing in...');
     try {
-      // const response = await axios.post("/api/login", {
-      // email,
-      // password,
-      // });
+      const response = await attemptLogin(email, password);
 
-      const userData = {
-        user: {
-          email: email,
-          password: password,
-        },
-        token: "2y73|3838idcdd9qdjw9dh393739f8eiehd9ehfdj9w3dg83dhq9deihd",
-      };
+      toast.remove(toastId);
+      toast.success("redirecting...");
 
       // Authenticate the user and set the user data in the authContext
-      login(userData);
+      login(response);
 
       // Redirect the user to the desired page after successful login
-      navigate("/dashboard");
+      setTimeout(() => {
+        navigate("/dashboard");
+      },2000)
     } catch (error) {
       console.error("Login error:", error);
+      handleRequestError(error, toastId);
     }
   };
 
