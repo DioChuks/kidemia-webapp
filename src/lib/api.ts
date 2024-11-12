@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { getAuthToken } from '../utils/auth';
 
-const token = getAuthToken();
+const authUser = sessionStorage.getItem('userData');
+const token = authUser ? JSON.parse(authUser): undefined;
 
 const api = axios.create({
   baseURL: 'https://kidemia.silfrica.com/api',
