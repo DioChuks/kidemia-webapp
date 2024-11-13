@@ -5,7 +5,7 @@ import MailIcon from "../components/icons/MailIcon";
 import ScanIcon from "../components/icons/ScanIcon";
 import logo2 from "../assets/images/logo2.png";
 import googleLogo from "../assets/images/google.png";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { attemptLogin } from "../lib/user/api-auth";
 import { handleRequestError } from "../lib/api-error-handler";
 
@@ -161,6 +161,7 @@ const LoginPage: React.FC = () => {
           </div>
         </form>
       </div>
+      <Toaster/>
     </main>
   );
 };
