@@ -43,7 +43,7 @@ function App() {
           <Route path="/dashboard" element={<PrivateRoute><HomeDashboard /></PrivateRoute>}/>
           <Route path="/pick/:type/subject" element={<PrivateRoute><PickSubject /></PrivateRoute>}/>
           <Route path="/pick/:subjectId/topic/:type" element={<PrivateRoute><PickTopic /></PrivateRoute>}/>
-          <Route path="/getting/:subjectId/ready/:type/for/:asId" element={<PrivateRoute><ReadyScreen /></PrivateRoute>}/>
+          <Route path="/assessment/:subjectId/ready/:type/for/:asId" element={<PrivateRoute><ReadyScreen /></PrivateRoute>}/>
           <Route
             path="/admin/dashboard"
             element={<AdminPrivateRoute><AdminLayout/></AdminPrivateRoute>}
