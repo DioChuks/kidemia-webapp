@@ -65,7 +65,7 @@ const PickTopic: React.FC = () => {
       const { test_id: testId, subject_id: newSubjectId, view } = response.data;
 
       setTimeout(() => {
-        navigate(`/getting/${newSubjectId}/ready/${view}/for/${testId}`);
+        navigate(`/assessment/${newSubjectId}/ready/${view}/for/${testId}`);
       }, 2500);
     } catch (error) {
       console.error("Error sending form data:", error);

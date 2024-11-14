@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { subjectData } from "./SubjectData";
 import SubjectCard from "../../../components/cards/SubjectCard";
@@ -9,18 +9,36 @@ import LogoPro from "../../../assets/images/logo-pro.png";
 import ClockImg from "../../../assets/images/image 3.png";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { fetchSubjectsByCategory } from "../../../lib/admin/api-subjects";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { Subject } from "../../../lib/@types/subjects";
 
 const PickSubject: React.FC = () => {
   const { type } = useParams();
   const navigate = useNavigate();
-  const [selectedSubjectId, setSelectedSubjectId] = useState<number | null>(
-    null,
-  );
+  const { userData } = useContext(AuthContext);
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [selectedSubjectId, setSelectedSubjectId] = useState<number | null>(null);
 
   useEffect(() => {
     if (type !== "test" && type !== "exam") {
       navigate("/dashboard");
     }
+
+    const toastId = toast.loading('fetching subjects...');
+    console.log("category id: ", userData.user.category_id)
+
+    fetchSubjectsByCategory(userData.user.category_id)
+      .then((data) => {
+        toast.remove(toastId);
+        toast.success(`${data.length} available!`);
+        setSubjects(data); 
+        console.log(data)
+      })
+      .catch((error) => {
+        toast.error("Failed to load subjects");
+        console.error("Error fetching subjects:", error);
+    });
   }, [type, navigate]);
 
   const handleSubjectChange = (id: number) => {
@@ -121,17 +139,20 @@ const PickSubject: React.FC = () => {
                 className="w-90p flex flex-wrap justify-evenly items-start gap-10"
                 id="subject-box"
               >
-                {subjectData.map((subject) => (
+                {subjects.map((subject, index) => {
+                  if (index > subject.topics.length) {index = 0} 
+                  return (
                   <SubjectCard
                     key={subject.id}
                     id={subject.id}
-                    logo={subject.logo}
-                    title={subject.title}
-                    topicAmount={subject.topicAmount}
+                    logo={subjectData[index].logo}
+                    title={subject.name}
+                    topicAmount={subject.topics.length}
                     isSelected={selectedSubjectId === subject.id}
                     onSelect={handleSubjectChange}
                   />
-                ))}
+                  )
+                })}
               </div>
             </div>
           </section>
