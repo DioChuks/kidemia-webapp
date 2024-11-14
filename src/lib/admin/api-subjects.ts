@@ -1,30 +1,6 @@
+import { NewSubject, Subject, SubjectStats } from "../@types/subjects";
 import api from "../api";
 import ApiResponse from "../res";
-
-interface Subject {
-    id: number;
-    uuid: string;
-    name: string;
-    category_id: number;
-    color: string;
-    topics: [];
-}
-
-interface NewSubject {
-    name: string;
-    category_id: number;
-    color: string|null;
-}
-
-// Define the interface for a single subject stat item
-interface SubjectStats {
-    id: number;
-    uuid: string;
-    name: string;
-    category_id: number;
-    no_of_questions: number;
-    no_of_topics: number;
-}
 
 // Define the response structure for the getSubjects endpoint
 interface GetSubjectStatsResponse extends ApiResponse<SubjectStats[]> {

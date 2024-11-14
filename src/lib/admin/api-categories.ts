@@ -1,13 +1,6 @@
+import { Category } from "../@types/categories";
 import api from "../api";
 import ApiResponse from "../res";
-
-// Define the interfaces for the expected data structures
-interface Category {
-  id: number;
-  name: string;
-  created_at: string | null;
-  updated_at: string | null;
-}
 
 // Fetch categories function
 export const fetchCategories = async (): Promise<Category[]> => {
