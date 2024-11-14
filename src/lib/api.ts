@@ -7,9 +7,13 @@ interface Session {
 
 const authUser = sessionStorage.getItem('userData');
 const parsed: Session = authUser ? JSON.parse(authUser): undefined;
+const env = {
+  prod: "https://kidemia.silfrica.com/api",
+  local: 'http://localhost:8000/api'
+}
 
 const api = axios.create({
-  baseURL: 'https://kidemia.silfrica.com/api',
+  baseURL: env.local,
   timeout: 10000,
   headers: {
     Accept: 'application/json',
