@@ -37,7 +37,6 @@ const StudentStep: React.FC = () => {
     { id: 1, name: "Common Entrance" },
     { id: 2, name: "Junior WAEC" },
     { id: 3, name: "Senior WAEC" },
-    // Add more purposes as needed
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
