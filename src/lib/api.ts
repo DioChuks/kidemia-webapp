@@ -8,7 +8,7 @@ interface Session {
 const authUser = sessionStorage.getItem('userData');
 const parsed: Session = authUser ? JSON.parse(authUser): undefined;
 const env = {
-  prod: "https://kidemia.silfrica.com/api",
+  prod: "https://kidemia-backend-production.up.railway.app/api",
   local: 'http://localhost:8000/api'
 }
 

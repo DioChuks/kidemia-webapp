@@ -51,6 +51,8 @@ const ReadyScreen: React.FC = () => {
     return () => window.removeEventListener("blur", handleBlur);
   }, [asId, navigate]);
 
+  const handleRender = () => {}
+
   return (
     <div
       className="relative h-max-screen sm-h-val bg-secondary"
@@ -93,16 +95,16 @@ const ReadyScreen: React.FC = () => {
             </a>
             <div className="w-80p flex flex-col gap-10">
               <h3 className="text-dark ready-subject-title">
-                You are writing <span id="subjects">Social Studies</span>
+                You are writing a <span id="subjects">{type}</span>
               </h3>
               <div className="flex flex-col gap-10" id="subjectInstruction">
                 <p>
-                  The test has 20 questions to be answered in 20 minutes, it
+                  The {type} has 20 questions to be answered in 20 minutes, it
                   will cover the following topics:
                 </p>
                 <ul className="flex flex-col items-start pl-5">
-                  <li className="list-numeric font-sm">Family</li>
-                  <li className="list-numeric font-sm">Racism</li>
+                  <li className="list-numeric font-sm">Lorem</li>
+                  <li className="list-numeric font-sm">Ipsum</li>
                 </ul>
               </div>
             </div>
@@ -129,12 +131,12 @@ const ReadyScreen: React.FC = () => {
                 id="readyInfoBtn"
               >
                 <p>If you are ready click on the button to begin</p>
-                <a
-                  href={`/test/ongoing/${asId}`}
+                <div
+                  onClick={handleRender}
                   className="w-30 h-5 justify-center bg-primary p-5 text-white text-14 font-lg"
                 >
                   Start
-                </a>
+                </div>
               </div>
             </div>
           </div>

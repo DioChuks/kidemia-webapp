@@ -2,15 +2,17 @@ import React from "react";
 
 interface SubjectCardProps {
   id: number;
+  uuid: string;
   logo: string;
   title: string;
   topicAmount: number;
   isSelected: boolean;
-  onSelect: (id: number) => void;
+  onSelect: (id: string) => void;
 }
 
 const SubjectCard: React.FC<SubjectCardProps> = ({
   id,
+  uuid,
   logo,
   title,
   topicAmount,
@@ -20,7 +22,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
   return (
     <label
       className={`relative w-25 h-20 flex flex-col justify-between items-center bg-primary-10 rounded-lg transition-all subject-card ${isSelected ? "subject-selected" : ""}`}
-      onClick={() => onSelect(id)}
+      onClick={() => onSelect(uuid)}
       htmlFor={`selected-${id}`}
     >
       <div className="img">

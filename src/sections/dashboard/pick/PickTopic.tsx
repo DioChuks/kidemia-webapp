@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { topics } from "./TopicData";
 import Loading from "../../../components/modals/Loading";
 import Logo2 from "../../../assets/images/logo2.png";
 import toast, { Toaster } from "react-hot-toast";
+import { fetchTopicsBySubjectId } from "../../../lib/user/api-topics";
+import { Topic } from "../../../lib/@types/topics";
 
 const PickTopic: React.FC = () => {
   const { type = "", subjectId = "" } = useParams<{
@@ -12,7 +13,9 @@ const PickTopic: React.FC = () => {
     subjectId: string;
   }>();
   const navigate = useNavigate();
+  const [topics, setTopics] = useState<Topic[]>([]);
   const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   setTimeout(() => {
     const loadingMode = document.getElementById("loadingMode");
@@ -30,48 +33,57 @@ const PickTopic: React.FC = () => {
 
   const handleContinueClick = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (selectedTopics.length === 0) {
       toast.error("Please select at least one topic!");
       return;
     }
 
-    if (selectedTopics.length >= 5) {
+    if (selectedTopics.length > 5) {
       toast.error("Not more than 5 topics!");
       return;
     }
 
-    // Add your loading state or open modal logic here.
-    // Replace with your actual loading state management
-    const modal = document.getElementById("modal");
-    if (modal) {
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-    }
+    setIsLoading(true); // Show loading state
 
     try {
-      const formData = new FormData();
-      formData.append("subject", subjectId);
-      formData.append("view", type);
-      selectedTopics.forEach((topic, index) => {
-        formData.append(`topic-${index}`, topic.toString());
-      });
+      // Prepare data for submission
+      const formData = {
+        subject: subjectId,
+        view: type,
+        topics: selectedTopics.map((topic) => topics[topic]?.id),
+      };
 
-      const response = await axios.post("/test/create/questions", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      // Send the request
+      const { test_id: testId, subject_id: newSubjectId, view } = await createTestOrExam(formData);
 
-      const { test_id: testId, subject_id: newSubjectId, view } = response.data;
-
+      // Navigate to the assessment page after a short delay
       setTimeout(() => {
         navigate(`/assessment/${newSubjectId}/ready/${view}/for/${testId}`);
       }, 2500);
     } catch (error) {
       console.error("Error sending form data:", error);
-      toast.error("An error occured!");
+      toast.error("An error occurred!");
+    } finally {
+      setIsLoading(false); // Hide loading state
     }
   };
+
+  useEffect(() => {
+    if (type !== "test" && type !== "exam" && subjectId == null) {
+      navigate("/dashboard");
+    }
+
+    fetchTopicsBySubjectId(subjectId)
+      .then((data) => {
+        setTopics(data); 
+        console.log(data)
+      })
+      .catch((error) => {
+        toast.error("Failed to load topics");
+        console.error("Error fetching topics:", error);
+    });
+  }, [type, subjectId, navigate])
 
   return (
     <div className="w-full h-auto flex flex-col main-wrapper picker-wrap bg-brand-white">
@@ -122,7 +134,7 @@ const PickTopic: React.FC = () => {
                   onChange={() => handleCheckboxChange(ii)}
                 />
                 <label htmlFor={`form-label-${ii}`} className="cursor-pointer">
-                  {topic}
+                  {topic.name}
                 </label>
               </div>
             ))}

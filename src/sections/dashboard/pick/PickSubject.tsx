@@ -18,7 +18,7 @@ const PickSubject: React.FC = () => {
   const navigate = useNavigate();
   const { userData } = useContext(AuthContext);
   const [subjects, setSubjects] = useState<Subject[]>([]);
-  const [selectedSubjectId, setSelectedSubjectId] = useState<number | null>(null);
+  const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
 
   useEffect(() => {
     if (type !== "test" && type !== "exam") {
@@ -41,7 +41,7 @@ const PickSubject: React.FC = () => {
     });
   }, [type, navigate]);
 
-  const handleSubjectChange = (id: number) => {
+  const handleSubjectChange = (id: string) => {
     setSelectedSubjectId(id);
   };
 
@@ -91,7 +91,7 @@ const PickSubject: React.FC = () => {
                 <p>Time limit: 20mins</p>
                 <small className="text-green" id="subject-choice">
                   {selectedSubjectId
-                    ? `You have picked ${subjectData.find((subject) => subject.id === selectedSubjectId)?.title}`
+                    ? `You have picked ${subjects.find((subject) => subject.uuid === selectedSubjectId)?.name}`
                     : ""}
                 </small>
               </div>
@@ -112,7 +112,7 @@ const PickSubject: React.FC = () => {
                 <p>Time limit: 1hr 20mins</p>
                 <small className="text-green" id="subject-choice">
                   {selectedSubjectId
-                    ? `You have picked ${subjectData.find((subject) => subject.id === selectedSubjectId)?.title}`
+                    ? `You have picked ${subjects.find((subject) => subject.uuid === selectedSubjectId)?.name}`
                     : ""}
                 </small>
               </div>
@@ -145,10 +145,11 @@ const PickSubject: React.FC = () => {
                   <SubjectCard
                     key={subject.id}
                     id={subject.id}
+                    uuid={subject.uuid}
                     logo={subjectData[index].logo}
                     title={subject.name}
                     topicAmount={subject.topics.length}
-                    isSelected={selectedSubjectId === subject.id}
+                    isSelected={selectedSubjectId === subject.uuid}
                     onSelect={handleSubjectChange}
                   />
                   )
