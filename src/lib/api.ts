@@ -1,24 +1,41 @@
-import axios from 'axios';
+import axios from "axios";
 
 interface Session {
   user: object;
   token: string;
 }
 
-const authUser = sessionStorage.getItem('userData');
-const parsed: Session = authUser ? JSON.parse(authUser): undefined;
-const env = {
+export const env = {
   prod: "https://kidemia-backend-production.up.railway.app/api",
-  local: 'http://localhost:8000/api'
-}
+  local: "http://localhost:8000/api",
+};
 
 const api = axios.create({
-  baseURL: env.local,
+  baseURL: env.prod,
   timeout: 10000,
   headers: {
-    Accept: 'application/json',
-    Authorization: parsed && parsed.token ? `Bearer ${parsed.token}` : undefined,
+    Accept: "application/json",
   },
 });
 
-export default api
+// Add a request interceptor to dynamically set the Authorization header
+api.interceptors.request.use(
+  (config) => {
+    const authUser = sessionStorage.getItem("userData");
+    const parsed: Session = authUser ? JSON.parse(authUser) : undefined;
+
+    if (parsed && parsed.token) {
+      config.headers.Authorization = `Bearer ${parsed.token}`;
+    } else {
+      delete config.headers.Authorization; // Ensure header is removed if no token
+    }
+
+    return config;
+  },
+  (error) => {
+    // Handle errors here
+    return Promise.reject(error);
+  }
+);
+
+export default api;
