@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../../components/modals/Loading";
 import Logo2 from "../../../assets/images/logo2.png";
 import toast, { Toaster } from "react-hot-toast";
 import { fetchTopicsBySubjectId } from "../../../lib/user/api-topics";
 import { Topic } from "../../../lib/@types/topics";
+import { createTestOrExam } from "../../../lib/user/api-assessment";
 
 const PickTopic: React.FC = () => {
   const { type = "", subjectId = "" } = useParams<{
@@ -16,12 +16,6 @@ const PickTopic: React.FC = () => {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  setTimeout(() => {
-    const loadingMode = document.getElementById("loadingMode");
-    loadingMode?.classList.remove("flex");
-    loadingMode?.classList.add("hidden");
-  }, 3000);
 
   const handleCheckboxChange = (index: number) => {
     setSelectedTopics((prevSelectedTopics) =>
@@ -55,7 +49,7 @@ const PickTopic: React.FC = () => {
       };
 
       // Send the request
-      const { test_id: testId, subject_id: newSubjectId, view } = await createTestOrExam(formData);
+      const { a_id: testId, subject_id: newSubjectId, view } = await createTestOrExam(formData);
 
       // Navigate to the assessment page after a short delay
       setTimeout(() => {
@@ -73,13 +67,16 @@ const PickTopic: React.FC = () => {
     if (type !== "test" && type !== "exam" && subjectId == null) {
       navigate("/dashboard");
     }
+    setIsLoading(true);
 
     fetchTopicsBySubjectId(subjectId)
       .then((data) => {
-        setTopics(data); 
+        setTopics(data);
+        setIsLoading(false); 
         console.log(data)
       })
       .catch((error) => {
+        setIsLoading(false);
         toast.error("Failed to load topics");
         console.error("Error fetching topics:", error);
     });
@@ -141,7 +138,7 @@ const PickTopic: React.FC = () => {
           </div>
         </div>
       </form>
-      <Loading />
+      {isLoading && <Loading />}
       <Toaster />
     </div>
   );
