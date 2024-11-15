@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import api from "../api";
+import api, { env } from "../api";
 import ApiResponse from "../res";
 
 // Define the interfaces for the expected data structures
@@ -23,12 +23,19 @@ interface UserAdmin {
 
 // Admin Login function
 export const attemptLogin = async (email:string, password:string): Promise<UserAdmin> => {
-  const response = await api.post<ApiResponse<UserAdmin>>('/auth/admin/login', {
-    email,
-    password
+  const response = await fetch(`${env.prod}/auth/admin/login`, {
+    method: "POST",
+    body: JSON.stringify({ email: email, password: password }),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    }
   });
-  if (response.status !== 200) {
-    throw new AxiosError(response.data.message)
+  if (!response.ok) {
+    throw new Error(`Response status: ${response.status}`);
   }
-  return response.data.data;
+
+  const json = await response.json();
+  console.log(json);
+  return json.data
 };
