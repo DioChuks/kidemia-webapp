@@ -25,10 +25,10 @@ export const attemptLogin = async (email: string, password: string): Promise<Use
     method: "POST",
     body: JSON.stringify({ email: email, password: password }),
   });
-  if (!response.ok) {
-    throw new Error(`Response status: ${response.status}`);
-  }
-
   const json = await response.json();
+  if (!response.ok) {
+    throw new Error(json.message)
+  }
+  
   return json.data
 };
