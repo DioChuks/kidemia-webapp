@@ -1,5 +1,5 @@
 import { AsTest } from "../@types/assessments";
-import { Topic, TopicStats } from "../@types/topics";
+import { Topic } from "../@types/topics";
 import api from "../api";
 import ApiResponse from "../res";
 

@@ -1,6 +1,4 @@
-import { AxiosError } from "axios";
-import api, { env } from "../api";
-import ApiResponse from "../res";
+import { env } from "../api";
 
 // Define the interfaces for the expected data structures
 interface User {
