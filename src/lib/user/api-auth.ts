@@ -24,6 +24,10 @@ export const attemptLogin = async (email: string, password: string): Promise<Use
   const response = await fetch(`${env.prod}/auth/login`, {
     method: "POST",
     body: JSON.stringify({ email: email, password: password }),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    }
   });
   const json = await response.json();
   if (!response.ok) {
