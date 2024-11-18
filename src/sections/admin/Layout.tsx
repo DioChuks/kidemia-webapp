@@ -47,7 +47,7 @@ const AdminLayout: React.FC = () => {
         <Header />
         <div className="w-full h-90p sm-md-height flex justify-between gap-5">
           <Sidebar />
-          <div className="w-85p max-sm-w-full h-full flex flex-col gap-5 items-center p-10 ml-5 mr-5 overflow-auto">
+          <div className="w-85p max-sm-w-full h-full flex flex-col gap-5 items-center p-10 ml-5 overflow-auto">
             <div className="w-full h-full flex-flex-col justify-evenly items-center gap-10">
               <div className="h-15p sm-md-height-auto sm-md-mb-4 flex md-flex-row flex-col justify-between items-center gap-5">
                 {currentMessage ? <h3 className="text-dark">{currentMessage}</h3> : <button onClick={() => navigate(-1)} className='w-4 h-4 flex items-center justify-center rounded-full text-dark border cursor-pointer'><LeftArrowIcon/></button>}
