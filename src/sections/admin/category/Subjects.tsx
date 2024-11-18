@@ -58,8 +58,7 @@ const Subjects: React.FC = () => {
   const currentSubjects = filteredSubjects.slice(startIndex, endIndex);
 
   const handlePageChange = (page: number) => {
-    if (page > totalPages) return;
-    if (page < currentPage) return;
+    if (page > totalPages || page < 1) return;
     setCurrentPage(page);
   };
 
@@ -155,10 +154,10 @@ const Subjects: React.FC = () => {
           </table>
           {/* handle pagination buttons */}
           <div className='flex items-center justify-end gap-8 w-full'>
-            <p>{currentPage}/{totalPages}</p>
+            <p>{currentPage}/<span className='font-bold text-teal-600'>{totalPages}</span></p>
             <p className='p-10 flex gap-5'>
-              <button className={`p-10 rounded-sm border-none ${currentPage === 1 ? "cursor-not-allowed border text-black" : "bg-teal-800 text-white cursor-pointer"}`} onClick={() => handlePageChange(currentPage - 1)}>back</button>
-              <button className={`p-10 text-white rounded-sm border-none ${currentPage === totalPages ? "cursor-not-allowed border text-black" : "bg-teal-800 text-white cursor-pointer"}`} onClick={() => handlePageChange(currentPage + 1)}>next</button>
+              <button className={`p-1 rounded-sm ${currentPage === 1 ? "cursor-not-allowed border text-black" : "bg-teal-800 text-white cursor-pointer"}`} onClick={() => handlePageChange(currentPage - 1)}>back</button>
+              <button className={`p-1 rounded-sm ${currentPage === totalPages ? "cursor-not-allowed border text-black" : "bg-teal-800 text-white cursor-pointer"}`} onClick={() => handlePageChange(currentPage + 1)}>next</button>
             </p>
           </div>
         </div>
