@@ -7,6 +7,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { fetchTopicsBySubjectId } from '../../../lib/admin/api-topics';
 import { storeQuestion } from '../../../lib/admin/api-questions';
 import toast, { Toaster } from 'react-hot-toast';
+import { handleRequestError } from '../../../lib/api-error-handler';
 
 interface Option {
   id: number;
@@ -84,7 +85,7 @@ const NewQuestion: React.FC = () => {
   const handleResetQuestion = () => {
     setQuestionData({
       title: '',
-      topic_id: 0,
+      topic_id: questionData.topic_id,
       correct_answer: '',
       solution: null as string | File | null,
       is_answer_multi: 0
@@ -93,11 +94,13 @@ const NewQuestion: React.FC = () => {
   }
 
   const handleSubmit = async () => {
+    console.log(questionData)
     if (!questionData.title || !questionData.topic_id || options.length < 2) {
       toast.error("Please fill in all fields and add at least two options.");
       return;
     }
-    console.log(questionData)
+
+    const toastId = toast.loading('Saving question...');
 
     // Prepare form data to handle the solution as a file
     const formData = new FormData();
@@ -120,11 +123,10 @@ const NewQuestion: React.FC = () => {
 
     try {
       await storeQuestion(formData);
-      toast.success("Question saved successfully!");
+      toast.success("Question saved successfully!", { id: toastId });
       handleResetQuestion();
     } catch (error) {
-      toast.error("Failed to save question.");
-      console.error("Error saving question:", error);
+      handleRequestError(error, toastId);
     }
   };
 
@@ -138,8 +140,9 @@ const NewQuestion: React.FC = () => {
             id="topic"
             className="w-30p h-4 border border-light-grey rounded-xs cursor-pointer"
             onChange={(e) => setQuestionData({ ...questionData, topic_id: Number(e.target.value) })}
+            defaultValue={0}
           >
-            <option selected>Enter Topic</option>
+            <option value={0}>Enter Topic</option>
             {topics.map((topic) => (
               <option value={topic.id} key={topic.id}>{topic.name}</option>
             ))}
@@ -156,8 +159,8 @@ const NewQuestion: React.FC = () => {
             onChange={(e) => setQuestionData({ ...questionData, title: e.target.value })}
           />
           <select name="topic" id="topic"
-            className="w-30p h-4 border border-light-grey rounded-xs cursor-pointer">
-            <option selected>Multiple choice answer</option>
+            className="w-30p h-4 border border-light-grey rounded-xs cursor-pointer" defaultValue={0}>
+            <option value={0}>Multiple choice answer</option>
             <option value="1">option1</option>
             <option value="2">option2</option>
             <option value="3">option3</option>
