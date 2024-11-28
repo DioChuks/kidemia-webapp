@@ -8,7 +8,7 @@ type ModalProps = {
   onClose: () => void;
 };
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
+const NewSubjectModal: React.FC<ModalProps> = ({ onClose }) => {
   const [subjectData, setSubjectData] = useState({
     name: '',
     category_id: 0,
@@ -98,4 +98,4 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   );
 };
 
-export default Modal;
+export default NewSubjectModal;
