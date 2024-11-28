@@ -7,6 +7,12 @@ interface GetTopicStatsResponse extends ApiResponse<TopicStats[]> {
     data: TopicStats[];
 }
 
+const fileUploadConfig = {
+  headers: {
+      'Content-Type': 'multipart/form-data',
+  },
+}
+
 export const fetchTopics = async (): Promise<Topic[]> => {
     const response = await api.get<ApiResponse<Topic[]>>('/topics');
     return response.data.data;
@@ -15,6 +21,11 @@ export const fetchTopics = async (): Promise<Topic[]> => {
 export const storeTopic = async (data: NewTopic): Promise<NewTopic> => {
     const response = await api.post<ApiResponse<NewTopic>>('/topics', data);
     return response.data.data;
+}
+
+export const importTopics = async (data: FormData) => {
+  const response = await api.post<ApiResponse<{}>>('/topics/import', data, fileUploadConfig);
+  return response.data.message;
 }
 
 export const fetchTopicsBySubjectId = async (id: number): Promise<Topic[]> => {
