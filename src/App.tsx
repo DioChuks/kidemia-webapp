@@ -15,7 +15,7 @@ import ForgotPassword from "./routes/ForgotPassword";
 import ChangePassword from "./routes/ChangePassword";
 import PickSubject from "./sections/dashboard/pick/PickSubject";
 import PickTopic from "./sections/dashboard/pick/PickTopic";
-import ReadyScreen from "./sections/dashboard/ReadyScreen";
+import AssessmentScreen from "./sections/dashboard/AssessmentScreen";
 import AdminLoginPage from "./routes/admin/Login";
 import AdminLayout from "./sections/admin/Layout";
 import Report from "./sections/admin/category/Report";
@@ -27,6 +27,8 @@ import Subjects from "./sections/admin/category/Subjects";
 import ShowSubject from "./sections/admin/category/Subject";
 import AdminPrivateRoute from "./contexts/AdminPrivateRoute";
 import Topics from "./sections/admin/category/NewTopic";
+import UploadTopics from "./sections/admin/category/ImportTopics";
+import UploadQuestions from "./sections/admin/category/ImportQuestions";
 
 function App() {
   return (
@@ -43,7 +45,7 @@ function App() {
           <Route path="/dashboard" element={<PrivateRoute><HomeDashboard /></PrivateRoute>}/>
           <Route path="/pick/:type/subject" element={<PrivateRoute><PickSubject /></PrivateRoute>}/>
           <Route path="/pick/:subjectId/topic/:type" element={<PrivateRoute><PickTopic /></PrivateRoute>}/>
-          <Route path="/assessment/:subjectId/ready/:type/for/:asId" element={<PrivateRoute><ReadyScreen /></PrivateRoute>}/>
+          <Route path="/assessment/:subjectId/ready/:type/for/:asId" element={<PrivateRoute><AssessmentScreen /></PrivateRoute>}/>
           <Route
             path="/admin/dashboard"
             element={<AdminPrivateRoute><AdminLayout/></AdminPrivateRoute>}
@@ -55,6 +57,8 @@ function App() {
             <Route path="add-question" element={<SubjectSelection/>}/>
             <Route path="new-question/:subjectId" element={<NewQuestion/>}/>
             <Route path="upload-subjects" element={<UploadSubjects/>}/>
+            <Route path="upload-topics" element={<UploadTopics/>}/>
+            <Route path="upload-questions" element={<UploadQuestions/>}/>
             <Route path="new-topic" element={<Topics/>}/>
           </Route>
           <Route path="/admin/*" element={<Navigate to="/admin/login" replace />} />

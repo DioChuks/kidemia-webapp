@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
     margin: 0;
     padding: 0;
@@ -2775,10 +2779,11 @@ footer .dashboard-btn-box {
 
 .purpose-box input[type="radio"]:checked::after {
     content: "✓";
-    background-color: var(--brandWhite);
+    background-color: var(--primary-color);
     color: white;
-    width: 12px;
-    border-radius: 5px;
+    width: fit-content;
+    padding: 2px;
+    border-radius: 100%;
     border: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 11px; /* Adjust checkmark size */
     font-weight: 600;
