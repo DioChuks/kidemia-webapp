@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/admin/Header';
 import Sidebar from '../../components/admin/Sidebar';
-import Modal from '../../components/admin/SubjectModal';
 import { Outlet } from 'react-router-dom';
 import PlusIcon from '../../components/icons/Plus';
 import Loader from '../../components/layouts/Loader';
 import LeftArrowIcon from '../../components/icons/LeftArrow';
+import NewSubjectModal from '../../components/admin/SubjectModal';
 
 const AdminLayout: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,7 +50,7 @@ const AdminLayout: React.FC = () => {
           <div className="w-85p max-sm-w-full h-full flex flex-col gap-5 items-center p-10 ml-5 overflow-auto">
             <div className="w-full h-full flex-flex-col justify-evenly items-center gap-10">
               <div className="h-15p sm-md-height-auto sm-md-mb-4 flex md-flex-row flex-col justify-between items-center gap-5">
-                {currentMessage ? <h3 className="text-dark">{currentMessage}</h3> : <button onClick={() => navigate(-1)} className='w-4 h-4 flex items-center justify-center rounded-full text-dark border cursor-pointer'><LeftArrowIcon/></button>}
+                {currentMessage ? <h3 className="text-dark font-bold">{currentMessage}</h3> : <button onClick={() => navigate(-1)} className='w-4 h-4 flex items-center justify-center rounded-full text-dark border cursor-pointer'><LeftArrowIcon/></button>}
                 <div className="flex md-flex-row flex-col items-center gap-5">
                   <div className="flex items-center">
                     <h5 className="text-dark">Category:</h5>
@@ -73,7 +73,7 @@ const AdminLayout: React.FC = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && <Modal onClose={handleModalToggle} />}
+      {isModalOpen && <NewSubjectModal onClose={handleModalToggle} />}
     </div>
     </div>
     </>
