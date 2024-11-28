@@ -1,11 +1,21 @@
 export interface AsTest {
-    a_id: string;
+    id: number;
+    uuid: string;
+    user_id: number;
     subject_id: string;
-    view: string;
+    topic_ids: string[];
+    question_ids: string[];
+    created_at: Date;
+    updated_at: Date;    
 }
 
 export interface AsExam {
-    a_id: string;
-    subject_id: string;
-    view: string;
+    id: number;
+    uuid: string;
+    user_id: number;
+    subject_ids: string[];
+    topic_ids: string[];
+    question_ids: string[];
+    created_at: Date;
+    updated_at: Date;
 }
