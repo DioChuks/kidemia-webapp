@@ -4,4 +4,10 @@ interface ApiResponse<T> {
     data: T;
 }
 
+export interface LogoutResponse {
+    status: string;
+    message: string;
+    data: null;
+}
+
 export default ApiResponse
