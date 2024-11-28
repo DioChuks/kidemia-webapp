@@ -39,9 +39,7 @@ const LoginPage: React.FC = () => {
     const toastId = toast.loading('signing in...');
     try {
       const response = await attemptLogin(email, password);
-
-      toast.remove(toastId);
-      toast.success("redirecting...");
+      toast.success("redirecting...", { id: toastId });
 
       // Authenticate the user and set the user data in the authContext
       login(response);
