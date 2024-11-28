@@ -1,30 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MailIcon from "../../components/icons/MailIcon";
 import ScanIcon from "../../components/icons/ScanIcon";
 import GoogleLogo from "../../assets/images/google.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { IRegisterUser } from "../../lib/@types/users";
+import { attemptRegister } from "../../lib/user/api-auth";
+import { AuthContext } from "../../contexts/AuthContext";
+import { handleRequestError } from "../../lib/api-error-handler";
 
 interface Purpose {
   id: number;
   name: string;
 }
 
-interface UserData {
-  type: "student" | "school";
-  email: string;
-  password: string;
-  confirm_password: string;
-  purpose: number | null;
-  guardian_email: string;
-}
 
-const StudentStep: React.FC = () => {
+const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress }) => {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [step, setStep] = useState<"personal" | "purpose" | "guardian">(
     "personal",
   );
 
-  const [userData, setUserData] = useState<UserData>({
+  const [userData, setUserData] = useState<IRegisterUser>({
     type: "student",
     email: "",
     password: "",
@@ -57,9 +55,14 @@ const StudentStep: React.FC = () => {
   const handleNextStep = () => {
     if (step === "personal") {
       setStep("purpose");
-    } else if (step === "purpose" && userData.purpose !== null) {
+    }
+    else if (step == "purpose" && userData.purpose == null) {
+      return;
+    } 
+    else if (step === "purpose" && userData.purpose !== null) {
       setStep("guardian");
     }
+    onProgress("next");
   };
 
   const handleBackStep = () => {
@@ -68,33 +71,22 @@ const StudentStep: React.FC = () => {
     } else if (step === "guardian") {
       setStep("purpose");
     }
+    onProgress("back");
   };
 
   const handleSubmit = async () => {
     const toastId = toast.loading('processing...');
     try {
-      console.log("User Data: \n");
       console.log(userData);
-      const response = await fetch("http://localhost:8000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-
-      if (response.ok) {
-        console.log("Registration successful");
-        // Handle successful registration
-        toast.remove(toastId);
-        toast.success('Success');
-        // redirect to login
-      }
+      const response = await attemptRegister(userData);
+      toast.success("redirecting...", { id: toastId });
+      login(response);
+      setTimeout(() => {
+        navigate("/dashboard");
+      },2000)
     } catch (error) {
-      console.error("Error during registration:", error);
-      // Handle network or other errors
-      toast.remove(toastId);
-      toast.error("Error occurred!");
+      console.error("Registration error:", error);
+      handleRequestError(error, toastId);
     }
   };
 
@@ -188,15 +180,17 @@ const StudentStep: React.FC = () => {
         return (
           <div
             id="step"
-            className="w-full flex-col justify-evenly items-center gap-5 h-md-sm"
+            className="w-full flex-col justify-evenly items-center gap-5 my-6"
             style={{ "--rH": "300px" } as React.CSSProperties}
           >
-            <h2>What are you preparing for?</h2>
+            <h2 className="text-lg md:text-xl text-dark">What are you preparing for?</h2>
+            <br />
             <div className="w-3-quarts flex justify-between items-center gap-5">
               {purposes.map((purpose) => (
                 <div
                   key={purpose.id}
-                  className="w-auto h-4 flex items-center p-10 gap-2 rounded-sm transition-all purpose-box"
+                  className={`w-auto h-4 flex items-center p-10 gap-2 rounded-sm transition-all purpose-box 
+                    ${purpose.id === userData.purpose ? 'bg-secondary':''}`}
                   id="purposeBox"
                 >
                   <input
@@ -207,6 +201,7 @@ const StudentStep: React.FC = () => {
                     aria-describedby="purpose"
                     value={purpose.id}
                     onChange={() => handlePurposeChange(purpose.id)}
+                    checked={purpose.id === userData.purpose}
                   />
                   <label
                     htmlFor={`purpose-${purpose.id}`}
@@ -217,6 +212,7 @@ const StudentStep: React.FC = () => {
                 </div>
               ))}
             </div>
+            <br />
             <div className="w-full flex justify-between items-center">
               <a
                 id="backStep"
@@ -227,7 +223,7 @@ const StudentStep: React.FC = () => {
               </a>
               <button
                 id="nextStep"
-                className="w-half p-10 bg-primary text-white text-hover-color font-xs rounded-sm border-none cursor-disallowed transition-all continue-purpose"
+                className="w-half p-10 bg-primary text-white text-hover-color font-xs rounded-sm border-none transition-all continue-purpose"
                 style={{ "--textColor": "green" } as React.CSSProperties}
                 type="button"
                 onClick={handleNextStep}
