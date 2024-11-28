@@ -28,7 +28,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
       <div className="img">
         <img src={logo} alt="sub-img" className="w-full h-full" />
       </div>
-      <h2 className="subject-title">{title}</h2>
+      <h2 className="subject-title md:text-xl text-lg">{title}</h2>
       <p className="subject-topics">{topicAmount} Topics</p>
     </label>
   );
