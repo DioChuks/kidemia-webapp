@@ -1,10 +1,11 @@
 import React, { CSSProperties, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import StudentStep from '../components/steps/StudentStep';
 import SchoolStep from '../components/steps/SchoolStep';
 import Logo from '../assets/images/KIDEMIA LOGO pro.png';
 import Student from '../assets/images/Student.png';
 import School from '../assets/images/School.png';
+import { Helpers } from '../lib/helpers';
 
 export interface MyCustomCSS extends CSSProperties {
   '--bgHoverColor': string;
@@ -15,16 +16,34 @@ export interface MyCustomCSS extends CSSProperties {
 }
 
 const RegisterPage: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams(window.location.search);
   const [step, setStep] = useState<'choose' | 'student' | 'school'>('choose');
+  const [progressNumber, setProgressNumber] = useState<number>(parseInt(searchParams.get("progress") ?? "1"));
+  
 
   const handleUserTypeClick = (userType: 'student' | 'school') => {
     setStep(userType);
+    Helpers.updateSearchParams("progress", progressNumber+1, setSearchParams, () => {
+      setProgressNumber(progressNumber+1);
+    })
   };
+
+  const handleProgressNumber = (type: string) => {
+    if (type === "back") {
+      Helpers.updateSearchParams("progress", progressNumber-1, setSearchParams, () => {
+        setProgressNumber(progressNumber-1);
+      })
+      return;
+    }
+    Helpers.updateSearchParams("progress", progressNumber+1, setSearchParams, () => {
+      setProgressNumber(progressNumber+1);
+    })
+  }
 
   const renderStep = () => {
     switch (step) {
       case 'student':
-        return <StudentStep />;
+        return <StudentStep onProgress={handleProgressNumber}/>;
       case 'school':
         return <SchoolStep />;
       default:
@@ -87,10 +106,10 @@ const RegisterPage: React.FC = () => {
             {[1, 2, 3, 4].map((number) => (
               <React.Fragment key={number}>
                 <div
-                  className={`w-2 h-2 flex items-center p-5 rounded-full ${number === 1 ? 'bg-primary' : 'bg-light-grey'} text-white text-center`}
+                  className={`w-2 h-2 flex items-center p-5 rounded-full ${number <= progressNumber ? progressNumber > number ? 'bg-green-500': 'bg-primary' : 'bg-light-grey'} text-white text-center`}
                   id="number"
                 >
-                  {number}
+                  {progressNumber > number ? '✓' : number}
                 </div>
                 {number !== 4 && <span className="font-lg text-light-grey text-center sm-w-value" id="bar" style={{ '--rWidthValue': '100%' } as MyCustomCSS}>- - - -</span>}
               </React.Fragment>
