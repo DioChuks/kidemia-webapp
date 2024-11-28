@@ -8,7 +8,7 @@ import { fetchSubjectsByCategory } from '../../../lib/admin/api-subjects'; // Ad
 interface ITopic {
   name: string;
   subject_id: number;
-  description: string|null;
+  description: string | null;
 }
 
 const NewTopic: React.FC = () => {
@@ -67,11 +67,11 @@ const NewTopic: React.FC = () => {
 
   return (
     <>
-      <p className='text-right'>
-        <Link to="/admin/dashboard/upload-subjects" className='text-right p-10 bg-primary text-white rounded-sm'>
-          <UploadIcon /> Upload Subjects
-        </Link>
-      </p>
+      <div className='flex justify-end'>
+      <Link to="/admin/dashboard/upload-topics" className='flex gap-6 w-fit items-center p-10 bg-primary text-white rounded-sm'>
+        <UploadIcon /> Upload Topics
+      </Link>
+      </div>
       <br />
       <div className="w-full max-sm-w-300 h-auto flex flex-col justify-center items-center text-dark overflow-x-auto">
         <form onSubmit={handleSubmit} className="relative w-half max-sm-w-90p h-3-quarts flex flex-col items-center justify-evenly gap-5 bg-white rounded-sm shadow-md p-10 rounded-md modal-content animate-slideDown" method="post">

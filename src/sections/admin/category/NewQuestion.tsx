@@ -8,6 +8,8 @@ import { fetchTopicsBySubjectId } from '../../../lib/admin/api-topics';
 import { storeQuestion } from '../../../lib/admin/api-questions';
 import toast, { Toaster } from 'react-hot-toast';
 import { handleRequestError } from '../../../lib/api-error-handler';
+import UploadIcon from '../../../components/icons/Upload';
+import { Link } from 'react-router-dom';
 
 interface Option {
   id: number;
@@ -131,6 +133,13 @@ const NewQuestion: React.FC = () => {
   };
 
   return (
+    <>
+    <div className='flex justify-end'>
+        <Link to="/admin/dashboard/upload-questions" className='flex gap-6 w-fit items-center p-10 bg-primary text-white rounded-sm'>
+          <UploadIcon /> Upload Questions
+        </Link>
+      </div>
+      <br />
     <div className="w-full flex flex-col justify-between items-start gap-5 flex-wrap">
       <div className="w-80p max-sm-w-full flex flex-col gap-5 relative bg-white rounded-xs p-5 shadow-md">
         <div className="w-full h-4 flex items-center justify-between">
@@ -266,6 +275,7 @@ const NewQuestion: React.FC = () => {
       </div>
       <Toaster />
     </div>
+    </>
   )
 }
 

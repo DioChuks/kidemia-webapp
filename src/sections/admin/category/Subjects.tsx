@@ -155,7 +155,7 @@ const Subjects: React.FC = () => {
           {/* handle pagination buttons */}
           <div className='flex items-center justify-end gap-8 w-full'>
             <p>{currentPage}/<span className='font-bold text-teal-600'>{totalPages}</span></p>
-            <p className='p-10 flex gap-5'>
+            <p className='p-5 flex gap-5'>
               <button className={`p-1 rounded-sm ${currentPage === 1 ? "cursor-not-allowed border text-black" : "bg-teal-800 text-white cursor-pointer"}`} onClick={() => handlePageChange(currentPage - 1)}>back</button>
               <button className={`p-1 rounded-sm ${currentPage === totalPages ? "cursor-not-allowed border text-black" : "bg-teal-800 text-white cursor-pointer"}`} onClick={() => handlePageChange(currentPage + 1)}>next</button>
             </p>

@@ -35,7 +35,7 @@ const SubjectSelection: React.FC = () => {
   return (
     <div className="w-full flex justify-between items-center gap-5 flex-wrap">
       <div className="w-80p max-sm-w-full pt-1 flex flex-col items-center gap-10 bg-white rounded-sm">
-        <h1 className="text-center text-primary">Select a Subject</h1>
+        <h1 className="text-center text-primary font-bold text-xl">Select a Subject</h1>
         <select className="w-3-quarts h-4 pl-1 bg-primary-grad2 border-none outline-none rounded-sm"
           name="subject_category"
           id="subjectCategory"
