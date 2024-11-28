@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { fetchTopicsBySubjectId } from "../../../lib/user/api-topics";
 import { Topic } from "../../../lib/@types/topics";
 import { createTestOrExam } from "../../../lib/user/api-assessment";
+import { handleRequestError } from "../../../lib/api-error-handler";
 
 const PickTopic: React.FC = () => {
   const { type = "", subjectId = "" } = useParams<{
@@ -38,28 +39,26 @@ const PickTopic: React.FC = () => {
       return;
     }
 
-    setIsLoading(true); // Show loading state
+    setIsLoading(true);
 
     try {
       // Prepare data for submission
       const formData = {
-        subject: subjectId,
-        view: type,
-        topics: selectedTopics.map((topic) => topics[topic]?.id),
+        subject_id: subjectId,
+        topic_ids: selectedTopics.map((topic) => topics[topic]?.id),
       };
 
-      // Send the request
-      const { a_id: testId, subject_id: newSubjectId, view } = await createTestOrExam(formData);
+      const response = await createTestOrExam(formData, type);
+      console.log(response);
 
       // Navigate to the assessment page after a short delay
       setTimeout(() => {
-        navigate(`/assessment/${newSubjectId}/ready/${view}/for/${testId}`);
+        navigate(`/assessment/${subjectId}/ready/${type}/for/${response.uuid}`);
       }, 2500);
     } catch (error) {
-      console.error("Error sending form data:", error);
-      toast.error("An error occurred!");
+      handleRequestError(error, "");
     } finally {
-      setIsLoading(false); // Hide loading state
+      setIsLoading(false);
     }
   };
 
@@ -91,7 +90,7 @@ const PickTopic: React.FC = () => {
         id="topic-form"
       >
         <div className="flex justify-between gap-10 p-20 pick-top-section">
-          <a href={`/pick/subject/${type}`} className="btn btn-primary sm-btn">
+          <a href={`/pick/${type}/subject`} className="btn btn-primary sm-btn">
             <span>&larr; Back</span>
           </a>
           <button
@@ -106,11 +105,11 @@ const PickTopic: React.FC = () => {
           <div className="w-6 h-6">
             <img src={Logo2} alt="img" className="w-full h-full" />
           </div>
-          <div className="text-center pick-top-body">
-            <h3>Select up to 5 topics you want to write on</h3>
+          <div className="text-center pick-top-body" style={{"marginBottom": "50px"}}>
+            <h3 className="md:text-xl text-lg">Select up to 5 topics you want to write on</h3>
           </div>
         </div>
-        <div className="inline-flex flex-col w-full h-auto">
+        <div className="flex flex-col w-full h-auto">
           <input type="hidden" name="subject" value={subjectId} />
           <input type="hidden" name="view" value={type} />
           <div className="flex justify-evenly flex-wrap gap-10 m-10 sm-topics-gap">
