@@ -32,13 +32,13 @@ const PickSubject: React.FC = () => {
       .then((data) => {
         toast.remove(toastId);
         toast.success(`${data.length} available!`);
-        setSubjects(data); 
+        setSubjects(data);
         console.log(data)
       })
       .catch((error) => {
-        toast.error("Failed to load subjects");
+        toast.error("Failed to load subjects", {id: toastId});
         console.error("Error fetching subjects:", error);
-    });
+      });
   }, [type, navigate]);
 
   const handleSubjectChange = (id: string) => {
@@ -83,7 +83,7 @@ const PickSubject: React.FC = () => {
               className="text-center sm-md-width"
               style={{ "--rWidthValue": "300px" } as React.CSSProperties}
             >
-              <h3 className="text-dark">
+              <h3 className="text-dark md:text-xl text-lg">
                 Pick a subject you would love to write a test on
               </h3>
               <div className="flex justify-center items-center gap-5 h-4">
@@ -103,7 +103,7 @@ const PickSubject: React.FC = () => {
               <img src={LogoPro} alt="img" className="w-full h-full" />
             </div>
             <div className="text-center">
-              <h3 className="text-dark">
+              <h3 className="text-dark md:text-xl text-lg">
                 Write an exam on one subject or more
               </h3>
               <div className="flex justify-center items-center gap-5 h-4">
@@ -132,31 +132,24 @@ const PickSubject: React.FC = () => {
           </div>
         )}
 
-        <div className="w-full inline-flex justify-center items-center pick-subjects">
-          <section className="h-auto">
-            <div className="w-full h-full flex justify-center items-center p-10 gap-10">
-              <div
-                className="w-90p flex flex-wrap justify-evenly items-start gap-10"
-                id="subject-box"
-              >
-                {subjects.map((subject, index) => {
-                  if (index > subject.topics.length) {index = 0} 
-                  return (
-                  <SubjectCard
-                    key={subject.id}
-                    id={subject.id}
-                    uuid={subject.uuid}
-                    logo={subjectData[index].logo}
-                    title={subject.name}
-                    topicAmount={subject.topics.length}
-                    isSelected={selectedSubjectId === subject.uuid}
-                    onSelect={handleSubjectChange}
-                  />
-                  )
-                })}
-              </div>
-            </div>
-          </section>
+        <div className="w-full flex justify-center items-center pick-subjects mb-4">
+          <div className="w-2/3 mx-auto flex flex-wrap gap-8 h-full p-4">
+            {subjects.map((subject, index) => {
+              if (index > subject.topics.length) { index = 0 }
+              return (
+                <SubjectCard
+                  key={subject.id}
+                  id={subject.id}
+                  uuid={subject.uuid}
+                  logo={subjectData[index].logo}
+                  title={subject.name}
+                  topicAmount={subject.topics.length}
+                  isSelected={selectedSubjectId === subject.uuid}
+                  onSelect={handleSubjectChange}
+                />
+              )
+            })}
+          </div>
         </div>
       </div>
       <Toaster />

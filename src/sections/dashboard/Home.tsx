@@ -133,12 +133,11 @@ function HomeDashboard() {
           <div className="flex flex-col text-center gap-10">
             <div className="top-heading">
               <h1
-                className="whitespace-no overflow-hidden text-40 sm-text-value text-white animate-typing"
-                style={{ "--textSmVal": "2rem" } as MyCustomCSS}
+                className="whitespace-no overflow-hidden md:text-6xl text-2xl text-white animate-typing"
               >
                 Welcome {userData.user.name}
               </h1>
-              <p className="whitespace-no overflow-hidden text-20 text-white animate-typing">
+              <p className="whitespace-no overflow-hidden text-xl text-white animate-typing">
                 What would you like to do?
               </p>
             </div>
@@ -163,7 +162,7 @@ function HomeDashboard() {
         <main className="h-auto flex flex-col justify-center items-center bg-brand-white">
           <div className="w-full h-auto flex flex-col justify-around items-center p-20 gap-10 performance-report">
             <div className="report-heading">
-              <h1 className="text-dark">Performance Report Summary</h1>
+              <h1 className="text-dark md:text-6xl text-2xl">Performance Report Summary</h1>
               <hr />
             </div>
             <div className="h-90p flex sm-flex-col justify-around items-center w-half text-center report-chart">
@@ -177,7 +176,7 @@ function HomeDashboard() {
                   </div>
                 </div>
                 <div className="report-body">
-                  <h4>Test Performance</h4>
+                  <h4 className="md:text-3xl text-xl">Test Performance</h4>
                   <a href="#">view history</a>
                 </div>
               </div>
@@ -191,7 +190,7 @@ function HomeDashboard() {
                   </div>
                 </div>
                 <div className="report-body">
-                  <h4>Exam Performance</h4>
+                  <h4 className="md:text-3xl text-xl">Exam Performance</h4>
                   <a href="#">view history</a>
                 </div>
               </div>

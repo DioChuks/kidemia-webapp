@@ -6,15 +6,36 @@ import MenuIcon from "../../components/icons/MenuIcon";
 import logo from "../../assets/images/KIDEMIA LOGO pro 2.png";
 import userIcon from "../../assets/images/Ellipse 1.svg";
 import { AuthContext } from "../../contexts/AuthContext";
+import { attemptLogout } from "../../lib/api-logout";
+import toast, { Toaster } from "react-hot-toast";
+import { handleRequestError } from "../../lib/api-error-handler";
 
 const Profile: React.FC = () => {
-  const { userData } = useContext(AuthContext);
+  const { userData, logout } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
   const [category, setCategory] = useState("Common Entrance");
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(event.target.value);
   };
+
+  const toggleLogoutModal = () => {
+    console.log(isLogout);
+    setIsLogout(!isLogout);
+  }
+
+  const handleLogout = async () => {
+    const toastId = toast.loading('signing out...');
+    try {
+      setIsLogout(false);
+      const response = await attemptLogout();
+      toast.success(response.message, { id: toastId });
+      logout();
+    } catch (error) {
+      handleRequestError(error, toastId);
+    }
+  }
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -39,7 +60,7 @@ const Profile: React.FC = () => {
             <img src={logo} alt="Kidemia" className="w-inherit h-inherit" />
           </Link>
         </div>
-        <nav className="flex items-center nav sm-d-none">
+        <nav className="flex items-center nav sm-d-none relative">
           <ul className="flex items-center">
             <li className="nav-item">
               <a href="#">Scheme</a>
@@ -50,13 +71,17 @@ const Profile: React.FC = () => {
               </a>
             </li>
             <ul>
-              <li className="nav-item">
+              <li className="nav-item" onClick={toggleLogoutModal}>
                 <a href="#">
                   <img src={userIcon} alt="User-icon" />
                 </a>
               </li>
             </ul>
           </ul>
+          {isLogout && (<ul
+            className="absolute top-3 right-2 w-10 h-4 border flex flex-col justify-around items-center bg-brand-white rounded-sm">
+            <li className="text-red nav-item font-lg cursor-pointer" onClick={handleLogout}>Logout</li>
+          </ul>)}
         </nav>
         <nav className="relative hidden md-d-none z-10" id="mobile-menu">
           <ul className="absolute top-2 right-2 left-2 w-20 h-30 border flex flex-col justify-around items-center bg-brand-white rounded-sm">
@@ -393,6 +418,7 @@ const Profile: React.FC = () => {
           </form>
         </div>
       )}
+      <Toaster/>
     </div>
   );
 };
