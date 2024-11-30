@@ -41,10 +41,8 @@ const LoginPage: React.FC = () => {
       const response = await attemptLogin(email, password);
       toast.success("redirecting...", { id: toastId });
 
-      // Authenticate the user and set the user data in the authContext
       login(response);
 
-      // Redirect the user to the desired page after successful login
       setTimeout(() => {
         navigate("/dashboard");
       },2000)
@@ -68,8 +66,8 @@ const LoginPage: React.FC = () => {
           id="formHeader"
         >
           <div id="title">
-            <h2 className="text-center">Welcome back</h2>
-            <p className="font-xs text-dark text-center">Login to continue</p>
+            <h2 className="text-center text-lg md:text-3xl font-bold">Welcome back</h2>
+            <p className="text-sm md:text-xl font-normal text-dark text-center">Login to continue</p>
           </div>
         </header>
         <form
@@ -122,7 +120,7 @@ const LoginPage: React.FC = () => {
               </div>
               <Link
                 to="/forgot-password"
-                className="w-fit text-red text-hover-underline"
+                className="w-fit text-red text-hover-underline font-normal"
               >
                 Forgot Password
               </Link>
@@ -138,13 +136,13 @@ const LoginPage: React.FC = () => {
               <a
                 href="#"
                 id="registerWithGoogle"
-                className="w-full flex items-center gap-10 p-10 bg-white bg-hover font-xs rounded-sm border-none cursor-pointer transition-all"
+                className="w-full flex items-center gap-10 p-10 bg-white bg-hover text-sm md:text-lg font-medium rounded-sm border-none cursor-pointer transition-all"
                 style={{ "--bgHoverColor": "#f7f7f7" } as MyCustomCSS}
                 onClick={handleGoogleAuth}
               >
                 <img src={googleLogo} alt="google-logo" /> Continue with Google
               </a>
-              <div id="registerLink" className="text-center">
+              <div id="registerLink" className="text-center text-sm md:text-lg font-medium">
                 <span>
                   I don't have an account{" "}
                   <Link
