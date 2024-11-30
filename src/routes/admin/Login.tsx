@@ -70,8 +70,8 @@ const AdminLoginPage: React.FC = () => {
           id="formHeader"
         >
           <div id="title">
-            <h2 className="text-center">Admin Access</h2>
-            <p className="font-xs text-dark text-center">Login as Admin or Guardian</p>
+            <h2 className="text-center text-xl md:text-3xl font-bold">Admin Access</h2>
+            <p className="text-lg md:text-xl text-dark text-center font-medium">Login as Admin or Guardian</p>
           </div>
         </header>
         <form
