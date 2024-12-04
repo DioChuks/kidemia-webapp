@@ -87,7 +87,7 @@ const RegisterPage: React.FC = () => {
   return (
     <main className="relative w-full h-max-screen flex flex-col justify-evenly items-center bg-brand-white element-before">
       <div
-        className="w-3-quarts max-w-4xl flex flex-col p-5 items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm sm-md-justify"
+        className="w-3-quarts max-w-4xl flex flex-col p-5 items-center gap-5 bg-brand-white rounded-[20px] shadow-auth z-1 animate-slideDown sm-md-width h-md-sm sm-md-justify"
         style={{ '--rWidthValue': '95%', '--rH': '80%', '--ct': 'space-evenly' } as MyCustomCSS}
       >
         <Link to="/" className="h-8 h-md-sm" style={{ '--rH': '50px' } as MyCustomCSS}>

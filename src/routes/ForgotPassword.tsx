@@ -26,7 +26,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <main className="relative w-full h-max-screen flex flex-col justify-evenly items-center bg-brand-white element-before">
       <div
-        className="w-3-quarts max-w-4xl h-50 flex flex-col p-5 justify-evenly items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm"
+        className="w-3-quarts max-w-4xl h-50 flex flex-col p-5 justify-evenly items-center gap-5 bg-brand-white rounded-[20px] shadow-auth z-1 animate-slideDown sm-md-width h-md-sm"
         style={{ "--rWidthValue": "95%", "--rH": "80%" } as MyCustomCSS}
       >
         <Link to="/" className="h-8 r-img">
