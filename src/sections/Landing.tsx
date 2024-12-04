@@ -88,7 +88,7 @@ function Landing() {
           <div className="flex flex-col text-center gap-10">
             <div className="top-heading">
               <h1
-                className="whitespace-no overflow-hidden text-40 sm-text-value text-white animate-typing"
+                className="whitespace-no overflow-hidden text-40 sm-text-value text-white animate-typing font-bold"
                 style={{ "--textSmVal": "2rem" } as MyCustomCSS}
               >
                 Welcome to Kidemia
