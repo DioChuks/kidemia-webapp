@@ -270,7 +270,7 @@ function HomeDashboard() {
               <BarChart bars={[30, 15, 5, 60, 90]} titleId="recent-test" />
             </div>
             <div
-              className="flex flex-col items-center w-half sm-w-value chart-box"
+              className="flex flex-col items-center w-half sm-w-value chart-box my-2"
               style={{ "--rWidthValue": "100%" } as React.CSSProperties}
             >
               <div className="chart-heading">
