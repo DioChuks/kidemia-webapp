@@ -29,6 +29,7 @@ import AdminPrivateRoute from "./contexts/AdminPrivateRoute";
 import Topics from "./sections/admin/category/NewTopic";
 import UploadTopics from "./sections/admin/category/ImportTopics";
 import UploadQuestions from "./sections/admin/category/ImportQuestions";
+import AdminRegisterPage from "./routes/admin/Register";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin/register" element={<AdminRegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/user-profile" element={<PrivateRoute><Profile /></PrivateRoute>}/>
