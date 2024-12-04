@@ -106,7 +106,7 @@ const PickTopic: React.FC = () => {
             <img src={Logo2} alt="img" className="w-full h-full" />
           </div>
           <div className="text-center pick-top-body" style={{"marginBottom": "50px"}}>
-            <h3 className="md:text-xl text-lg">Select up to 5 topics you want to write on</h3>
+            <h3 className="md:text-xl text-lg font-bold">Select up to 5 topics you want to write on</h3>
           </div>
         </div>
         <div className="flex flex-col w-full h-auto">

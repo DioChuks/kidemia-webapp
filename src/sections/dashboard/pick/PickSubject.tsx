@@ -83,7 +83,7 @@ const PickSubject: React.FC = () => {
               className="text-center sm-md-width"
               style={{ "--rWidthValue": "300px" } as React.CSSProperties}
             >
-              <h3 className="text-dark md:text-xl text-lg">
+              <h3 className="text-dark md:text-xl text-lg font-bold">
                 Pick a subject you would love to write a test on
               </h3>
               <div className="flex justify-center items-center gap-5 h-4">
