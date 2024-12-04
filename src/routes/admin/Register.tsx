@@ -72,7 +72,7 @@ const AdminRegisterPage: React.FC = () => {
             <h2 className="font-bold text-black text-xl md:text-3xl text-center mb-4">
               Welcome to <span className="text-xl md:text-3xl text-secondary">KIDEMIA</span>
             </h2>
-            <p className="text-sm md:text-xl font-normal text-dark text-center">Create your passward to complete your registration as a Guardian</p>
+            <p className="text-sm md:text-xl font-normal text-dark text-center">Create your password to complete your registration as a Guardian</p>
           </div>
         </header>
         <form
