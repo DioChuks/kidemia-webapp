@@ -45,6 +45,12 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
     }));
   };
 
+  // handles email validation with regex
+  const handleEmailValidation = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   const handlePurposeChange = (purposeId: number) => {
     setUserData((prevState) => ({
       ...prevState,
@@ -53,7 +59,28 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
   };
 
   const handleNextStep = () => {
+    // if userData email is empty or password is empty or confirm password is empty, and both dont match, return
+    if (
+      userData.email === "" ||
+      !handleEmailValidation(userData.email) ||
+      userData.password === "" ||
+      userData.confirm_password === ""
+    ) {
+      const toastId = toast.error("Please fill in all the fields correctly");
+      setTimeout(() => {
+        toast.error("Password should be at least 6 characters", { id: toastId });
+      }, 1000);
+      return;
+    }
     if (step === "personal") {
+      if (userData.password.length < 6) {
+        toast.error("Password should be at least 6 characters");
+        return;
+      }
+      if (userData.password !== userData.confirm_password) {
+        toast.error("Passwords do not match");
+        return;
+      }
       setStep("purpose");
     }
     else if (step == "purpose" && userData.purpose == null) {
@@ -108,6 +135,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 id="email"
                 placeholder="Your email"
                 className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark"
+                value={userData.email}
                 required
                 onChange={handleInputChange}
               />
@@ -126,6 +154,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 placeholder="Password"
                 className="w-full border-none outline-none bg-transparent"
                 minLength={6}
+                value={userData.password}
                 required
                 onChange={handleInputChange}
               />
@@ -144,6 +173,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 placeholder="Check Password"
                 className="w-full border-none outline-none bg-transparent"
                 minLength={6}
+                value={userData.confirm_password}
                 required
                 onChange={handleInputChange}
               />
@@ -183,9 +213,9 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
             className="w-full flex-col justify-evenly items-center gap-5 my-6"
             style={{ "--rH": "300px" } as React.CSSProperties}
           >
-            <h2 className="text-lg md:text-xl text-dark">What are you preparing for?</h2>
+            <h2 className="text-xl md:text-2xl text-dark font-bold text-center">What are you preparing for?</h2>
             <br />
-            <div className="w-3-quarts flex justify-between items-center gap-5">
+            <div className="w-full flex justify-evenly items-center gap-5">
               {purposes.map((purpose) => (
                 <div
                   key={purpose.id}
