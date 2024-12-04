@@ -159,11 +159,11 @@ function HomeDashboard() {
             </div>
           </div>
         </div>
-        <main className="h-auto flex flex-col justify-center items-center bg-brand-white">
+        <main className="h-auto flex flex-col justify-center items-center bg-brand-white my-6">
           <div className="w-full h-auto flex flex-col justify-around items-center p-20 gap-10 performance-report">
             <div className="report-heading">
               <h1 className="text-dark md:text-6xl text-2xl">Performance Report Summary</h1>
-              <hr />
+              <hr className="text-dark"/>
             </div>
             <div className="h-90p flex sm-flex-col justify-around items-center w-half text-center report-chart">
               <div className="flex flex-col items-center report-box">
@@ -176,7 +176,7 @@ function HomeDashboard() {
                   </div>
                 </div>
                 <div className="report-body">
-                  <h4 className="md:text-3xl text-xl">Test Performance</h4>
+                  <h4 className="md:text-2xl text-xl font-bold">Test Performance</h4>
                   <a href="#">view history</a>
                 </div>
               </div>
@@ -190,19 +190,19 @@ function HomeDashboard() {
                   </div>
                 </div>
                 <div className="report-body">
-                  <h4 className="md:text-3xl text-xl">Exam Performance</h4>
+                  <h4 className="md:text-2xl text-xl font-bold">Exam Performance</h4>
                   <a href="#">view history</a>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-max-screen h-auto flex flex-wrap justify-around items-center text-dark bg-primary gap-10 p-20 content-center">
+          <div className="w-max-screen h-auto flex flex-wrap justify-around items-center text-dark bg-primary gap-10 p-20 content-center my-4">
             <div className="flex flex-col justify-evenly items-center analysis-box">
               <div className="flex flex-col justify-center items-center text-center analysis-info">
                 <div className="analysis-img">
                   <img src={Img2} alt="img" />
                 </div>
-                <h4 className="analysis-title">No. of tests attempted</h4>
+                <h4 className="analysis-title font-bold">No. of tests attempted</h4>
               </div>
               <span className="analysis-score">70</span>
             </div>
@@ -211,7 +211,7 @@ function HomeDashboard() {
                 <div className="analysis-img">
                   <img src={Img1} alt="img" />
                 </div>
-                <h4 className="analysis-title">
+                <h4 className="analysis-title font-bold">
                   Correct Test Questions Answered
                 </h4>
               </div>
@@ -224,7 +224,7 @@ function HomeDashboard() {
                 <div className="analysis-img">
                   <img src={Img2} alt="img" />
                 </div>
-                <h4 className="analysis-title">No. of Exams Attempted</h4>
+                <h4 className="analysis-title font-bold">No. of Exams Attempted</h4>
               </div>
               <span className="analysis-score">70</span>
             </div>
@@ -233,7 +233,7 @@ function HomeDashboard() {
                 <div className="analysis-img">
                   <img src={Img1} alt="img" />
                 </div>
-                <h4 className="analysis-title">
+                <h4 className="analysis-title font-bold">
                   Correct Exam Questions Answered
                 </h4>
               </div>
@@ -246,7 +246,7 @@ function HomeDashboard() {
                 <div className="analysis-img">
                   <img src={Img3} alt="img" />
                 </div>
-                <h4 className="analysis-title">
+                <h4 className="analysis-title font-bold">
                   Average time spent per question
                 </h4>
               </div>
@@ -263,7 +263,7 @@ function HomeDashboard() {
               style={{ "--rWidthValue": "100%" } as React.CSSProperties}
             >
               <div className="chart-heading">
-                <h1 className="text-center text-dark chart-title">
+                <h1 className="text-center text-dark chart-title text-xl md:text-3xl font-bold">
                   Recent Test Performance
                 </h1>
               </div>
@@ -274,7 +274,7 @@ function HomeDashboard() {
               style={{ "--rWidthValue": "100%" } as React.CSSProperties}
             >
               <div className="chart-heading">
-                <h1 className="text-center text-dark chart-title">
+                <h1 className="text-center text-dark chart-title text-xl md:text-3xl font-bold">
                   Recent Exam Performance
                 </h1>
               </div>
@@ -282,7 +282,7 @@ function HomeDashboard() {
             </div>
           </div>
           <div id="assessment-history" className="w-max-screen mb-5">
-            <h2 className="text-dark mb-2">Assessment History</h2>
+            <h2 className="text-dark mb-2 text-xl md:text-2xl font-bold">Assessment History</h2>
             <div className="w-full flex flex-col items-center gap-5">
               <div id="Frame1000001375" className="flex gap-5">
                 <button
