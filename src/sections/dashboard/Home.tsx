@@ -159,11 +159,10 @@ function HomeDashboard() {
             </div>
           </div>
         </div>
-        <main className="h-auto flex flex-col justify-center items-center bg-brand-white my-6">
+        <main className="h-auto flex flex-col justify-center items-center bg-brand-white my-8">
           <div className="w-full h-auto flex flex-col justify-around items-center p-20 gap-10 performance-report">
             <div className="report-heading">
-              <h1 className="text-dark md:text-6xl text-2xl">Performance Report Summary</h1>
-              <hr className="text-dark"/>
+              <h1 className="text-dark md:text-6xl text-2xl px-5 pr-5 py-12 border-b-2 border-[#2A3740]">Performance Report Summary</h1>
             </div>
             <div className="h-90p flex sm-flex-col justify-around items-center w-half text-center report-chart">
               <div className="flex flex-col items-center report-box">
@@ -196,7 +195,7 @@ function HomeDashboard() {
               </div>
             </div>
           </div>
-          <div className="w-max-screen h-auto flex flex-wrap justify-around items-center text-dark bg-primary gap-10 p-20 content-center my-4">
+          <div className="w-max-screen h-auto flex flex-wrap justify-around items-center text-dark bg-primary gap-10 p-20 content-center my-8">
             <div className="flex flex-col justify-evenly items-center analysis-box">
               <div className="flex flex-col justify-center items-center text-center analysis-info">
                 <div className="analysis-img">
@@ -256,7 +255,7 @@ function HomeDashboard() {
             </div>
           </div>
         </main>
-        <footer className="w-max-screen p-10 bg-brand-white">
+        <footer className="w-max-screen p-10 bg-brand-white my-8">
           <div className="flex sm-flex-col gap-5 chart-container">
             <div
               className="flex flex-col items-center w-half sm-w-value chart-box"
