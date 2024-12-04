@@ -134,7 +134,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 name="email"
                 id="email"
                 placeholder="Your email"
-                className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark"
+                className="w-full border-none outline-none bg-transparent font-xs text-16 md:h-14 text-dark"
                 value={userData.email}
                 required
                 onChange={handleInputChange}
@@ -152,7 +152,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 name="password"
                 id="password"
                 placeholder="Password"
-                className="w-full border-none outline-none bg-transparent"
+                className="w-full border-none outline-none bg-transparent md:h-14"
                 minLength={6}
                 value={userData.password}
                 required
@@ -171,7 +171,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 name="confirm_password"
                 id="confirmPassword"
                 placeholder="Check Password"
-                className="w-full border-none outline-none bg-transparent"
+                className="w-full border-none outline-none bg-transparent md:h-14"
                 minLength={6}
                 value={userData.confirm_password}
                 required
@@ -196,7 +196,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
             >
               <img src={GoogleLogo} alt="google-logo" /> Sign up with Google
             </a>
-            <div id="loginLink" className="text-center">
+            <div id="loginLink" className="text-center font-medium text-black text-sm md:text-base">
               <span>
                 I have an account{" "}
                 <Link to="/login" className="text-primary text-hover-underline">

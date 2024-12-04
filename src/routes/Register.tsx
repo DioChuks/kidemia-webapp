@@ -87,7 +87,7 @@ const RegisterPage: React.FC = () => {
   return (
     <main className="relative w-full h-max-screen flex flex-col justify-evenly items-center bg-brand-white element-before">
       <div
-        className="w-3-quarts h-55 flex flex-col p-5 items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm sm-md-justify"
+        className="w-3-quarts max-w-4xl flex flex-col p-5 items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm sm-md-justify"
         style={{ '--rWidthValue': '95%', '--rH': '80%', '--ct': 'space-evenly' } as MyCustomCSS}
       >
         <Link to="/" className="h-8 h-md-sm" style={{ '--rH': '50px' } as MyCustomCSS}>
@@ -95,10 +95,10 @@ const RegisterPage: React.FC = () => {
         </Link>
         <header className="flex flex-col justify-between items-center gap-5" id="formHeader">
           <div id="title">
-            <h2 className="font-bold text-black text-xl md:text-3xl text-center">
+            <h2 className="font-bold text-black text-xl md:text-3xl text-center mb-4">
               Welcome to <span className="text-xl md:text-3xl text-secondary">KIDEMIA</span>
             </h2>
-            <p className="font-xs text-dark">Complete your registration in just 4 steps</p>
+            <p className="font-xs font-normal text-dark">Complete your registration in just 4 steps</p>
           </div>
         </header>
         <div id="body" className="w-3-quarts flex flex-col justify-between items-center gap-5 sm-md-width h-md-sm" style={{ '--rWidthValue': '90%', '--rH': '70%' } as MyCustomCSS}>
@@ -115,6 +115,7 @@ const RegisterPage: React.FC = () => {
               </React.Fragment>
             ))}
           </div>
+          <br />
           {renderStep()}
         </div>
       </div>
