@@ -238,17 +238,18 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
         return (
           <div
             id="step"
-            className="w-full flex-col justify-evenly items-center gap-5 h-md-sm"
+            className="w-full flex-col justify-evenly items-center gap-5 h-md-sm my-8"
             style={{ "--rH": "300px" } as React.CSSProperties}
           >
-            <h2>Let's meet your guardian</h2>
-            <p className="text-center">
+            <h2 className="text-lg md:text-xl text-black text-center font-bold">Let's meet your guardian</h2>
+            <p className="text-center text-lg md:text-xl">
               Your guardian would receive reports on tests and exams you take
             </p>
-            <div className="w-3-quarts flex items-center gap-5">
+            <br />
+            <div className="flex justify-center items-center gap-5">
               <div
                 id="inputBox"
-                className="w-full flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"
+                className="w-3-quarts flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"
               >
                 <label htmlFor="guardianEmail">
                   <MailIcon />
@@ -258,28 +259,29 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                   name="guardian_email"
                   id="guardianEmail"
                   placeholder="Guardian email"
-                  className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark"
+                  className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark h-14"
                   value={userData.guardian_email}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
+            <br />
             <div className="w-full flex justify-between items-center">
               <a
                 id="backStep"
-                className="text-dark font-xs cursor-pointer"
+                className="text-dark text-sm md:text-base cursor-pointer"
                 onClick={handleBackStep}
               >
                 &lt; Back
               </a>
               <button
                 id="finalStep"
-                className="w-half p-10 bg-primary text-white text-hover-color font-xs rounded-sm border-none transition-all"
+                className="w-half p-10 bg-primary text-white text-hover-color text-sm md:text-base rounded-sm border-none transition-all"
                 style={{ "--textColor": "green" } as React.CSSProperties}
                 type="button"
                 onClick={handleSubmit}
               >
-                continue
+                Continue
               </button>
             </div>
           </div>
