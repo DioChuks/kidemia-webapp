@@ -55,7 +55,7 @@ const LoginPage: React.FC = () => {
   return (
     <main className="relative w-full h-max-screen flex flex-col justify-evenly items-center bg-brand-white element-before">
       <div
-        className="w-3-quarts h-50 flex flex-col p-5 justify-evenly items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm"
+        className="w-3-quarts max-w-4xl flex flex-col p-5 justify-evenly items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm"
         style={{ "--rWidthValue": "95%", "--rH": "80%" } as MyCustomCSS}
       >
         <Link to="/" className="h-8 r-img">
@@ -66,7 +66,7 @@ const LoginPage: React.FC = () => {
           id="formHeader"
         >
           <div id="title">
-            <h2 className="text-center text-lg md:text-3xl font-bold">Welcome back</h2>
+            <h2 className="font-bold text-black text-xl md:text-3xl text-center">Welcome back</h2>
             <p className="text-sm md:text-xl font-normal text-dark text-center">Login to continue</p>
           </div>
         </header>
@@ -93,7 +93,7 @@ const LoginPage: React.FC = () => {
                   name="email"
                   id="email"
                   placeholder="Your email"
-                  className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark"
+                  className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark md:h-14"
                   value={email}
                   onChange={handleEmailChange}
                   required
@@ -111,7 +111,7 @@ const LoginPage: React.FC = () => {
                   name="password"
                   id="password"
                   placeholder="Password"
-                  className="w-full border-none outline-none bg-transparent"
+                  className="w-full border-none outline-none bg-transparent md:h-14"
                   value={password}
                   onChange={handlePasswordChange}
                   minLength={6}
