@@ -129,7 +129,7 @@ const PickTopic: React.FC = () => {
                   checked={selectedTopics.includes(ii)}
                   onChange={() => handleCheckboxChange(ii)}
                 />
-                <label htmlFor={`form-label-${ii}`} className="cursor-pointer">
+                <label htmlFor={`form-label-${ii}`} className="text-sm md:text-xl font-normal cursor-pointer">
                   {topic.name}
                 </label>
               </div>
