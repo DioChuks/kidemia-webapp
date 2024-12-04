@@ -36,7 +36,7 @@ const TakeAssessmentModal: React.FC<ModalProps> = ({
         </div>
 
         <div className="w-full text-center test-body">
-          <h1 className="mb-1 md:text-4xl text-2xl">{title}</h1>
+          <h1 className="mb-1 md:text-4xl text-2xl font-bold">{title}</h1>
           <p className="font-md">{subtitle}</p>
         </div>
 
