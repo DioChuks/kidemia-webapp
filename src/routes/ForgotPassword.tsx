@@ -26,7 +26,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <main className="relative w-full h-max-screen flex flex-col justify-evenly items-center bg-brand-white element-before">
       <div
-        className="w-3-quarts h-50 flex flex-col p-5 justify-evenly items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm"
+        className="w-3-quarts max-w-4xl h-50 flex flex-col p-5 justify-evenly items-center gap-5 bg-brand-white rounded-sm shadow-auth z-1 animate-slideDown sm-md-width h-md-sm"
         style={{ "--rWidthValue": "95%", "--rH": "80%" } as MyCustomCSS}
       >
         <Link to="/" className="h-8 r-img">
@@ -37,8 +37,8 @@ const ForgotPassword: React.FC = () => {
           id="formHeader"
         >
           <div id="title">
-            <h2 className="text-center">Forgot Password</h2>
-            <p className="font-xs text-dark text-center">
+            <h2 className="font-bold text-black text-xl md:text-3xl text-center">Forgot Password</h2>
+            <p className="text-sm md:text-xl font-normal text-dark text-center">
               Place your email to receive your reset link
             </p>
           </div>
@@ -66,7 +66,7 @@ const ForgotPassword: React.FC = () => {
                   name="email"
                   id="email"
                   placeholder="Your email"
-                  className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark"
+                  className="w-full border-none outline-none bg-transparent font-xs text-16 text-dark md:h-14"
                   value={email}
                   onChange={handleEmailChange}
                   required
@@ -81,7 +81,7 @@ const ForgotPassword: React.FC = () => {
               >
                 Continue
               </button>
-              <div id="registerLink" className="text-center">
+              <div id="registerLink" className="text-center text-sm md:text-lg font-medium">
                 <span>
                   I don't have an account{" "}
                   <Link
