@@ -133,7 +133,7 @@ function HomeDashboard() {
           <div className="flex flex-col text-center gap-10">
             <div className="top-heading">
               <h1
-                className="whitespace-no overflow-hidden md:text-6xl text-2xl text-white animate-typing"
+                className="whitespace-no overflow-hidden md:text-6xl text-2xl text-white animate-typing font-bold"
               >
                 Welcome {userData.user.name}
               </h1>
