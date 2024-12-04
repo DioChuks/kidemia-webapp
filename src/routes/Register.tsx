@@ -95,8 +95,8 @@ const RegisterPage: React.FC = () => {
         </Link>
         <header className="flex flex-col justify-between items-center gap-5" id="formHeader">
           <div id="title">
-            <h2 className="font-sm text-center">
-              Welcome to <span className="font-lg text-secondary">KIDEMIA</span>
+            <h2 className="font-bold text-black text-xl md:text-3xl text-center">
+              Welcome to <span className="text-xl md:text-3xl text-secondary">KIDEMIA</span>
             </h2>
             <p className="font-xs text-dark">Complete your registration in just 4 steps</p>
           </div>
