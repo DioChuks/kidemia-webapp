@@ -37,3 +37,20 @@ export const attemptLogin = async (email:string, password:string): Promise<UserA
   
   return json.data
 };
+
+export const attemptRegister = async (email:string, password:string): Promise<UserAdmin> => {
+  const response = await fetch(`${env.prod}/auth/admin/register`, {
+    method: "POST",
+    body: JSON.stringify({ email: email, password: password }),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    }
+  });
+  const json = await response.json();
+  if (!response.ok) {
+    throw new Error(json.message)
+  }
+  
+  return json.data
+};

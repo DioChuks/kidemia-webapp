@@ -5,7 +5,7 @@ import MailIcon from "../../components/icons/MailIcon";
 import ScanIcon from "../../components/icons/ScanIcon";
 import logo2 from "../../assets/images/logo2.png";
 import toast, { Toaster } from "react-hot-toast";
-import { attemptLogin } from "../../lib/admin/api-login";
+import { attemptRegister } from "../../lib/admin/api-login";
 import { handleRequestError } from "../../lib/api-error-handler";
 
 export interface MyCustomCSS extends CSSProperties {
@@ -18,6 +18,7 @@ export interface MyCustomCSS extends CSSProperties {
 const AdminRegisterPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -29,17 +30,24 @@ const AdminRegisterPage: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    const toastId = toast.loading('signing in...');
+    const toastId = toast.loading('confirming details...');
     try {
-      const response = await attemptLogin(email, password);
+      if (password !== confirmPassword) {
+        throw new Error("Passwords do not match");
+      }
+      const response = await attemptRegister(email, password);
       toast.success("redirecting...", { id: toastId });
 
       login(response);
 
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate("/admin/dashboard");
       },2000)
     } catch (error) {
       console.error("Login error:", error);
@@ -70,7 +78,7 @@ const AdminRegisterPage: React.FC = () => {
         <form
           id="body"
           className="w-3-quarts flex flex-col justify-between items-center gap-5"
-          onSubmit={handleLogin}
+          onSubmit={handleRegister}
         >
           <div
             id="steps"
@@ -111,6 +119,25 @@ const AdminRegisterPage: React.FC = () => {
                   className="w-full border-none outline-none bg-transparent md:h-14"
                   value={password}
                   onChange={handlePasswordChange}
+                  minLength={6}
+                  required
+                />
+              </div>
+              <div
+                id="inputPasswordBox"
+                className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm"
+              >
+                <label htmlFor="checkPassword">
+                  <ScanIcon />
+                </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  placeholder="Check Password"
+                  className="w-full border-none outline-none bg-transparent md:h-14"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
                   minLength={6}
                   required
                 />
