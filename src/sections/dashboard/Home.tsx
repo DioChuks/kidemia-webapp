@@ -162,8 +162,9 @@ function HomeDashboard() {
         <main className="h-auto flex flex-col justify-center items-center bg-brand-white my-8">
           <div className="w-full h-auto flex flex-col justify-around items-center p-20 gap-10 performance-report">
             <div className="report-heading">
-              <h1 className="text-dark md:text-6xl text-2xl px-5 pr-5 py-12 border-b-2 border-[#2A3740]">Performance Report Summary</h1>
+              <h1 className="text-dark md:text-6xl text-2xl px-5 pr-5 py-12 font-bold border-b-2 border-[#2A3740]">Performance Report Summary</h1>
             </div>
+            <br />
             <div className="h-90p flex sm-flex-col justify-around items-center w-half text-center report-chart">
               <div className="flex flex-col items-center report-box">
                 <div
@@ -280,7 +281,7 @@ function HomeDashboard() {
               <BarChart bars={[30, 45, 35, 55, 50]} titleId="recent-exam" />
             </div>
           </div>
-          <div id="assessment-history" className="w-max-screen mb-5">
+          <div id="assessment-history" className="w-max-screen mt-5">
             <h2 className="text-dark mb-2 text-xl md:text-2xl font-bold">Assessment History</h2>
             <div className="w-full flex flex-col items-center gap-5">
               <div id="Frame1000001375" className="flex gap-5">
