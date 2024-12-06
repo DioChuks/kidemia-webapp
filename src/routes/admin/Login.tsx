@@ -47,10 +47,11 @@ const AdminLoginPage: React.FC = () => {
       toast.remove(toastId);
       toast.success("redirecting...");
 
-      // Redirect the user to the desired page after successful login
-      setTimeout(() => {
-        navigate("/admin/dashboard");
-      },2000)
+      if (userData.user.role === "guardian") {
+        navigate("/admin/guardian")
+        return;
+      }
+      return navigate("/admin/dashboard");
     } catch (error) {
       handleRequestError(error, toastId);
     }
