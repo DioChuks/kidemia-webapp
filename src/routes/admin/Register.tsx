@@ -1,6 +1,5 @@
-import React, { CSSProperties, useState, useContext } from "react";
+import React, { CSSProperties, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
 import MailIcon from "../../components/icons/MailIcon";
 import ScanIcon from "../../components/icons/ScanIcon";
 import logo2 from "../../assets/images/logo2.png";
@@ -19,7 +18,6 @@ const AdminRegisterPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,8 +41,7 @@ const AdminRegisterPage: React.FC = () => {
       }
       const response = await attemptRegister(email, password);
       toast.success("redirecting...", { id: toastId });
-
-      login(response);
+      console.log(response);
 
       setTimeout(() => {
         navigate("/admin/dashboard");
