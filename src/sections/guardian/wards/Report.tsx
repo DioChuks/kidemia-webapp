@@ -6,14 +6,16 @@ import CardInfoBox from '../../../components/cards/CardInfoBox';
 import toast, { Toaster } from 'react-hot-toast';
 import UserIcon from '../../../assets/images/Ellipse 1.svg';
 import PlusIcon from '../../../components/icons/Plus';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { wardHistory } from '../data/history';
 import WardHistory from './WardHistory';
 import { AuthContext } from '../../../contexts/AuthContext';
+import { handleRequestError } from '../../../lib/api-error-handler';
 
 const WardReport: React.FC = () => {
     const { userData } = useContext(AuthContext);
     const { state } = useLocation();
+    const navigate = useNavigate();
     // Safely access state and ward
     const ward = state?.ward;
 
@@ -21,11 +23,13 @@ const WardReport: React.FC = () => {
         const loadCounts = async () => {
             const toastId = toast.loading('Loading ward report...');
             try {
+                if (!ward) {
+                    throw new Error('Ward data not found');
+                }
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 toast.success('Data loaded successfully', { id: toastId });
             } catch (error) {
-                toast.error('Failed to load card data', { id: toastId });
-                console.error("Error fetching card counts:", error);
+                handleRequestError(error, toastId);
             }
         };
 
@@ -34,8 +38,9 @@ const WardReport: React.FC = () => {
 
     if (!ward) {
         return (
-            <div className="flex justify-center items-center h-full">
+            <div className="flex flex-col justify-center items-center h-full gap-3">
                 <p className='text-xl font-normal text-red-600'>Ward data not found!</p>
+                <button className='bg-primary text-white rounded-[10px] flex items-center justify-center h-[50px] w-[137px]' onClick={() => navigate(-1)}>&larr; Go Back</button>
             </div>
         );
     }
