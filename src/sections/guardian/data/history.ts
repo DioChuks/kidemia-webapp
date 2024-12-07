@@ -20,7 +20,7 @@ export const wardHistory = [
         title: "Mathematics",
         avgScore: 70,
         status: "finished",
-        comment: "excellent",
+        comment: "very good",
         dateCreated: "2024-03-30",
     },
     {
@@ -28,7 +28,7 @@ export const wardHistory = [
         title: "Verbal Reasoning",
         avgScore: 60,
         status: "finished",
-        comment: "excellent",
+        comment: "very good",
         dateCreated: "2024-03-30",
     },
     {
@@ -36,13 +36,13 @@ export const wardHistory = [
         title: "History",
         avgScore: 50,
         status: "finished",
-        comment: "excellent",
+        comment: "average",
         dateCreated: "2024-03-30",
     },
     {
         id: 6,
         title: "Biology",
-        avgScore: 50,
+        avgScore: 80,
         status: "finished",
         comment: "excellent",
         dateCreated: "2024-03-30",
@@ -50,9 +50,9 @@ export const wardHistory = [
     {
         id: 7,
         title: "Civic Education",
-        avgScore: 50,
+        avgScore: 65,
         status: "finished",
-        comment: "good",
+        comment: "very good",
         dateCreated: "2024-03-30",
     }
 ];
