@@ -11,6 +11,7 @@ interface IWardCard {
 
 const WardCard: React.FC<IWardCard> = ({ id, name, avgExamScore, avgTestScore }) => {
     const navigate = useNavigate();
+    const ward = {id, name, avgExamScore, avgTestScore};
   return (
     <div 
         className='w-72 md:w-[300px] h-full bg-primary-gradient 
@@ -26,7 +27,7 @@ const WardCard: React.FC<IWardCard> = ({ id, name, avgExamScore, avgTestScore })
             <p className='text-base md:text-lg font-normal text-gray-600'>Avg. Exam Score: {avgExamScore}%</p>
             <p className='text-base md:text-lg font-normal text-gray-600'>Avg. Test Score: {avgTestScore}%</p>
             <button className='bg-primary text-white rounded-[10px] flex items-center justify-center h-[50px] w-[137px]' 
-                    onClick={() => navigate("/admin/guardian/ward-report", { state: {ward_id: id}})}>
+                    onClick={() => navigate("/admin/guardian/ward-report", { state: {ward}})}>
                 View Ward
             </button>
         </div>

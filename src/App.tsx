@@ -32,6 +32,7 @@ import UploadQuestions from "./sections/admin/category/ImportQuestions";
 import AdminRegisterPage from "./routes/admin/Register";
 import GuardianLayout from "./sections/guardian/Layout";
 import WardsLayout from "./sections/guardian/wards/Layout";
+import WardReport from "./sections/guardian/wards/Report";
 
 function App() {
   return (
@@ -70,7 +71,7 @@ function App() {
             element={<AdminPrivateRoute><GuardianLayout/></AdminPrivateRoute>}
           >
             <Route index element={<WardsLayout/>} />
-            <Route path="ward-report" element={<h1>single ward</h1>} />
+            <Route path="ward-report" element={<WardReport/>} />
           </Route>
           <Route path="/admin/*" element={<Navigate to="/admin/login" replace />} />
           <Route path="/dashboard/*" element={<Navigate to="/login" replace />} />

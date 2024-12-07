@@ -10,7 +10,7 @@ import { attemptLogout } from '../../lib/api-logout';
 import { handleRequestError } from '../../lib/api-error-handler';
 
 const Header: React.FC = () => {
-  const { logout } = useContext(AuthContext)
+  const { logout, userData } = useContext(AuthContext)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
 
@@ -42,8 +42,8 @@ const Header: React.FC = () => {
       {isModalOpen && (<nav className="relative md-d-none z-10" id="mobile-menu">
         <ul
           className="absolute top-2 right-2 left-2 w-20 h-30 border flex flex-col justify-around items-center bg-brand-white rounded-sm">
-          <a href="/admin/dashboard/report" className="flex items-center gap-1 text-dark"><ReportLineIcon /> Report</a>
-          <a href="/admin/dashboard/subjects" className="flex items-center gap-1 text-dark"><BooksIcon /> Subjects</a>
+          <a href={userData.role === 'admin' ? '/admin/dashboard/report' : '/admin/guardian/ward-report'} className="flex items-center gap-1 text-dark"><ReportLineIcon /> Report</a>
+          <a href={userData.role === 'admin' ? '/admin/dashboard/subjects' : '/admin/guardian'} className="flex items-center gap-1 text-dark"><BooksIcon /> {userData.role === 'admin' ? 'Subjects' : 'Wards'}</a>
           <a href="#" className="flex items-center gap-1 text-dark"><BellIcon /> Notifications</a>
           <li className="text-red nav-item font-lg" onClick={logout}>Logout</li>
         </ul>

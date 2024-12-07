@@ -1,0 +1,58 @@
+export const wardHistory = [
+    {
+        id: 1,
+        title: "Social Studies",
+        avgScore: 80,
+        status: "finished",
+        comment: "excellent",
+        dateCreated: "2024-03-30",
+    },
+    {
+        id: 2,
+        title: "English Language",
+        avgScore: 90,
+        status: "finished",
+        comment: "excellent",
+        dateCreated: "2024-03-30",
+    },
+    {
+        id: 3,
+        title: "Mathematics",
+        avgScore: 70,
+        status: "finished",
+        comment: "excellent",
+        dateCreated: "2024-03-30",
+    },
+    {
+        id: 4,
+        title: "Verbal Reasoning",
+        avgScore: 60,
+        status: "finished",
+        comment: "excellent",
+        dateCreated: "2024-03-30",
+    },
+    {
+        id: 5,
+        title: "History",
+        avgScore: 50,
+        status: "finished",
+        comment: "excellent",
+        dateCreated: "2024-03-30",
+    },
+    {
+        id: 6,
+        title: "Biology",
+        avgScore: 50,
+        status: "finished",
+        comment: "excellent",
+        dateCreated: "2024-03-30",
+    },
+    {
+        id: 7,
+        title: "Civic Education",
+        avgScore: 50,
+        status: "finished",
+        comment: "good",
+        dateCreated: "2024-03-30",
+    }
+];
