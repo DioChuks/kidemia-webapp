@@ -33,6 +33,7 @@ import AdminRegisterPage from "./routes/admin/Register";
 import GuardianLayout from "./sections/guardian/Layout";
 import WardsLayout from "./sections/guardian/wards/Layout";
 import WardReport from "./sections/guardian/wards/Report";
+import Performance from "./sections/dashboard/Performance";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/user-profile" element={<PrivateRoute><Profile /></PrivateRoute>}/>
           <Route path="/dashboard" element={<PrivateRoute><HomeDashboard /></PrivateRoute>}/>
+          <Route path="/performance" element={<PrivateRoute><Performance /></PrivateRoute>}/>
           <Route path="/pick/:type/subject" element={<PrivateRoute><PickSubject /></PrivateRoute>}/>
           <Route path="/pick/:subjectId/topic/:type" element={<PrivateRoute><PickTopic /></PrivateRoute>}/>
           <Route path="/assessment/:subjectId/ready/:type/for/:asId" element={<PrivateRoute><AssessmentScreen /></PrivateRoute>}/>

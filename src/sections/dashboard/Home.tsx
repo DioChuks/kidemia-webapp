@@ -85,7 +85,7 @@ function HomeDashboard() {
                 <a href="#">Scheme</a>
               </li>
               <li className="nav-item">
-                <Link to="">Dashboard</Link>
+                <Link to="/performance">Dashboard</Link>
               </li>
               <li className="nav-item">
                 <a href="#">
@@ -111,7 +111,7 @@ function HomeDashboard() {
                 <a href="#">Scheme</a>
               </li>
               <li className="nav-item">
-                <a href="#">Dashboard</a>
+                <a href="/performance">Dashboard</a>
               </li>
               <a href="#" className="flex items-center gap-1 text-dark">
                 <BellIcon /> Notifications
@@ -300,7 +300,7 @@ function HomeDashboard() {
           </div>
 
           <div className="dashboard-btn-box">
-            <Link to={"/dashboard"} className="btn btn-primary sm-btn">
+            <Link to={"/performance"} className="btn btn-primary sm-btn">
               Dashboard
             </Link>
           </div>
