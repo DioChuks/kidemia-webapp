@@ -34,6 +34,7 @@ import GuardianLayout from "./sections/guardian/Layout";
 import WardsLayout from "./sections/guardian/wards/Layout";
 import WardReport from "./sections/guardian/wards/Report";
 import Performance from "./sections/dashboard/Performance";
+import StudentHistory from "./sections/dashboard/History";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/user-profile" element={<PrivateRoute><Profile /></PrivateRoute>}/>
           <Route path="/dashboard" element={<PrivateRoute><HomeDashboard /></PrivateRoute>}/>
           <Route path="/performance" element={<PrivateRoute><Performance /></PrivateRoute>}/>
+          <Route path="/student-history/:type" element={<PrivateRoute><StudentHistory/></PrivateRoute>}/>
           <Route path="/pick/:type/subject" element={<PrivateRoute><PickSubject /></PrivateRoute>}/>
           <Route path="/pick/:subjectId/topic/:type" element={<PrivateRoute><PickTopic /></PrivateRoute>}/>
           <Route path="/assessment/:subjectId/ready/:type/for/:asId" element={<PrivateRoute><AssessmentScreen /></PrivateRoute>}/>

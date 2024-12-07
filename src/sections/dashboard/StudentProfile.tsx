@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { AuthContext } from "@/contexts/AuthContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function StudentProfile() {
     const {userData} = useContext(AuthContext);
+    const navigate = useNavigate();
   return (
     <div className="min-h-screen w-72 lg:w-[500px] flex items-center justify-center">
       <Card className="w-full max-w-md bg-orange-600 text-white rounded-3xl overflow-hidden">
@@ -68,17 +70,17 @@ export default function StudentProfile() {
 
         {/* Action Buttons */}
         <div className="bg-brand-white p-6 space-y-3">
-          <Button className="w-full bg-orange-500 h-[43px] hover:bg-orange-600">
+          <Button className="w-full bg-orange-500 h-[43px] hover:bg-orange-600" onClick={() => navigate("/student-history/exam")}>
             Exam History
           </Button>
-          <Button className="w-full bg-orange-500 h-[43px] hover:bg-orange-600">
+          <Button className="w-full bg-orange-500 h-[43px] hover:bg-orange-600" onClick={() => navigate("/student-history/test")}>
             Test History
           </Button>
           <div className="grid grid-cols-2 gap-3">
-            <Button className="w-full bg-orange-500 rounded-lg h-[75px] hover:bg-orange-600">
+            <Button className="w-full bg-orange-500 rounded-lg h-[75px] hover:bg-orange-600" onClick={() => navigate("/pick/test/subject") }>
               Take a Test
             </Button>
-            <Button className="w-full bg-orange-500 rounded-lg h-[75px] hover:bg-orange-600">
+            <Button className="w-full bg-orange-500 rounded-lg h-[75px] hover:bg-orange-600" onClick={() => navigate("/pick/exam/subject") }>
               Take an Exam
             </Button>
           </div>
