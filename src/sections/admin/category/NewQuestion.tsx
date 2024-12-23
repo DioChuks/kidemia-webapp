@@ -54,8 +54,8 @@ const NewQuestion: React.FC = () => {
   }, [subjectId]);
 
   const handleAddOption = () => {
-    // Only allow up to 4 options
-    if (options.length < 4) {
+    // Only allow up to 5 options
+    if (options.length < 5) {
       const newOption = { id: options.length + 1, text: '' };
       setOptions([...options, newOption]);
     }
@@ -158,8 +158,7 @@ const NewQuestion: React.FC = () => {
           </select>
         </div>
         <div className="w-full h-4 flex items-center justify-between">
-          <input
-            type="text"
+          <textarea
             name="question"
             id="question"
             className="w-70p h-4 pl-1 border border-light-grey rounded-xs"
@@ -208,7 +207,7 @@ const NewQuestion: React.FC = () => {
           ))}
         </div>
         <div className="w-full p-1 justify-end pr-1 items-center gap-10 inline-flex">
-          {options.length < 4 && ( // Limit to 4 options
+          {options.length < 5 && ( // Limit to 5 options
             <div
               className="p-10 bg-opaque-blue text-blue rounded-xs justify-start items-center gap-2 flex cursor-pointer"
               onClick={handleAddOption}
