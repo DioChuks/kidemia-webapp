@@ -8,6 +8,7 @@ import { IRegisterUser } from "../../lib/@types/users";
 import { attemptRegister } from "../../lib/user/api-auth";
 import { AuthContext } from "../../contexts/AuthContext";
 import { handleRequestError } from "../../lib/api-error-handler";
+import { UserIcon } from "lucide-react";
 
 interface Purpose {
   id: number;
@@ -24,6 +25,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
 
   const [userData, setUserData] = useState<IRegisterUser>({
     type: "student",
+    name: "",
     email: "",
     password: "",
     confirm_password: "",
@@ -61,6 +63,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
   const handleNextStep = () => {
     // if userData email is empty or password is empty or confirm password is empty, and both dont match, return
     if (
+      userData.name === "" ||
       userData.email === "" ||
       !handleEmailValidation(userData.email) ||
       userData.password === "" ||
@@ -122,6 +125,24 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
       case "personal":
         return (
           <div id="step" className="flex flex-col gap-5">
+            <div
+              id="inputBox"
+              className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"
+            >
+              <label htmlFor="name">
+                <UserIcon className="text-primary"/>
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Your name"
+                className="w-full border-none outline-none bg-transparent font-xs text-16 md:h-14 text-dark"
+                value={userData.name}
+                required
+                onChange={handleInputChange}
+              />
+            </div>
             <div
               id="inputBox"
               className="flex items-center bg-inputGrey gap-5 p-5 rounded-sm border border-primary"

@@ -18,6 +18,7 @@ export interface IAuthUser {
 
 export interface IRegisterUser {
     type: "student" | "school";
+    name: string;
     email: string;
     password: string;
     confirm_password: string;
