@@ -26,7 +26,13 @@ const PickSubject: React.FC = () => {
     }
 
     const toastId = toast.loading('fetching subjects...');
-    console.log("category id: ", userData.user.category_id)
+    console.log("category id: ", userData?.user.category_id)
+
+    if (!userData?.user.category_id) {
+      toast.error("No category found");
+      navigate("/dashboard");
+      return;
+    }
 
     fetchSubjectsByCategory(userData.user.category_id)
       .then((data) => {

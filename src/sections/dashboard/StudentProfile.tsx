@@ -23,8 +23,8 @@ export default function StudentProfile() {
           </div>
 
           {/* User Info */}
-          <h2 className="text-2xl font-semibold mb-1">{userData.user.name}</h2>
-          <p className="text-orange-200 mb-4">{userData.user.email}</p>
+          <h2 className="text-2xl font-semibold mb-1">{userData?.user.name}</h2>
+          <p className="text-orange-200 mb-4">{userData?.user.email}</p>
 
           {/* Level Badge */}
           <div className="flex items-center gap-2 mb-2">

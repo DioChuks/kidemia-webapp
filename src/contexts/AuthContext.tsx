@@ -1,29 +1,12 @@
+import { IAuthUser, User } from '@/lib/@types/users';
 import React, { createContext, useEffect, useState } from 'react';
-
-interface AuthUser {
-    user: {
-      id: number;
-      category_id?: number;
-      name: string;
-      email: string;
-      email_verified_at: null|Date;
-      photo: null|string;
-      otp: null|string;
-      category_status: boolean;
-      guardian_email: null|string;
-      role: string;
-      created_at: Date;
-      updated_at: Date; 
-    },
-    token: string;
-}
 
 interface AuthContextProps {
   isAuthenticated: boolean;
-  login: (userData: AuthUser) => void;
-  updateUser: (newData: Partial<AuthUser>) => void;
+  login: (userData: IAuthUser) => void;
   logout: () => void;
-  userData: any;
+  updateUser: (userData: Partial<User>) => void; // Allow partial updates
+  userData: IAuthUser | null;
 }
 
 interface AuthProviderProps {
@@ -33,49 +16,49 @@ interface AuthProviderProps {
 export const AuthContext = createContext<AuthContextProps>({
   isAuthenticated: false,
   login: () => {},
-  updateUser: () => {},
   logout: () => {},
-  userData: {},
+  updateUser: () => {},
+  userData: null,
 });
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(() => {
-        const storedUserData = sessionStorage.getItem('userData');
-        return storedUserData ? true : false;
-      });
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const storedUserData = sessionStorage.getItem('userData');
+    return storedUserData ? true : false;
+  });
 
-      const [userData, setUserData] = useState<AuthUser | object>(() => {
-        const storedUserData = sessionStorage.getItem('userData');
-        return storedUserData ? JSON.parse(storedUserData) : {};
-      });
+  const [userData, setUserData] = useState<IAuthUser | null>(() => {
+    const storedUserData = sessionStorage.getItem('userData');
+    return storedUserData ? JSON.parse(storedUserData) : null;
+  });
 
-  const login = (data: AuthUser) => {
+  const login = (data: IAuthUser) => {
     sessionStorage.setItem('userData', JSON.stringify(data));
     setIsAuthenticated(true);
     setUserData(data);
   };
 
-  const updateUser = (data: Partial<AuthUser>) => {
+  const updateUser = (data: Partial<User>) => {
     setUserData((prevState) => {
-        if (!prevState) return {};
+      if (!prevState) return null;
 
-        const updatedUserData = {
-          ...prevState,
-          user: {
-            ...prevState,
-            ...data,
-          },
-        };
+      const updatedUserData = {
+        ...prevState,
+        user: {
+          ...prevState.user,
+          ...data,
+        },
+      };
 
-        sessionStorage.setItem('userData', JSON.stringify(updatedUserData));
-        return updatedUserData;
-      });
+      sessionStorage.setItem('userData', JSON.stringify(updatedUserData));
+      return updatedUserData;
+    });
   };
 
   const logout = () => {
     sessionStorage.removeItem('userData');
     setIsAuthenticated(false);
-    setUserData({});
+    setUserData(null);
   };
 
   useEffect(() => {

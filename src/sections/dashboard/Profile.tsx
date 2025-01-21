@@ -114,7 +114,7 @@ const Profile: React.FC = () => {
               <label htmlFor="profilePicture">
                 <img
                   className="w-10 h-10 rounded-full border-3 border-primary Ellipse1"
-                  src={userData.user.photo ?? userIcon}
+                  src={userData?.user.photo ?? userIcon}
                   alt="User Profile Picture"
                 />
               </label>
@@ -167,7 +167,7 @@ const Profile: React.FC = () => {
                     <input
                       className="w-full text-gray text-16 font-gothic font-xs Student border-none outline-none"
                       style={{ lineHeight: "22.40px", wordWrap: "break-word" }}
-                      value={userData.user.name}
+                      value={userData?.user.name}
                       placeholder="Liam Gabriel"
                     />
                   </div>
@@ -205,7 +205,7 @@ const Profile: React.FC = () => {
                     <input
                       className="w-full text-gray text-16 font-gothic font-xs Student border-none outline-none"
                       style={{ lineHeight: "22.40px", wordWrap: "break-word" }}
-                      value={userData.user.email}
+                      value={userData?.user.email}
                       placeholder="echempraise@gmail.com"
                     />
                   </div>

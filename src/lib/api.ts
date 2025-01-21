@@ -8,10 +8,12 @@ interface Session {
 export const env = {
   prod: "https://kidemia-backend-production.up.railway.app/api",
   local: "http://localhost:8000/api",
+  clientUrl: "https://kidemia.netlify.app",
+  localClientUrl: "http://localhost:5173",
 };
 
 const api = axios.create({
-  baseURL: env.prod,
+  baseURL: env.local,
   timeout: 10000,
   headers: {
     Accept: "application/json",

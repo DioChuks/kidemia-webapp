@@ -25,7 +25,7 @@ const AssessmentScreen: React.FC = () => {
       setIsLoading(false);
     }, 3000);
     const handleBlur = async () => {
-      const authToken = userData.token;
+      const authToken = userData?.token;
       try {
         if (asId) {
           await axios.post(

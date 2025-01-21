@@ -74,7 +74,7 @@ const NewTopic: React.FC = () => {
       </div>
       <br />
       <div className="w-full max-sm-w-300 h-auto flex flex-col justify-center items-center text-dark overflow-x-auto">
-        <form onSubmit={handleSubmit} className="relative w-half max-sm-w-90p h-3-quarts flex flex-col items-center justify-evenly gap-5 bg-white rounded-sm shadow-md p-10 rounded-md modal-content animate-slideDown" method="post">
+        <form onSubmit={handleSubmit} className="relative w-half max-sm-w-90p h-3-quarts flex flex-col items-center justify-evenly gap-5 bg-white rounded-sm shadow-md p-10 lg:rounded-md modal-content animate-slideDown" method="post">
           <h1 className="text-dark max-sm:text-sm">Add a <span className="text-secondary">Topic</span></h1>
           <input
             type="text"

@@ -135,7 +135,7 @@ function HomeDashboard() {
               <h1
                 className="whitespace-no overflow-hidden md:text-6xl text-2xl text-white animate-typing font-bold"
               >
-                Welcome {userData.user.name}
+                Welcome {userData?.user.name}
               </h1>
               <p className="whitespace-no overflow-hidden text-xl text-white animate-typing">
                 What would you like to do?

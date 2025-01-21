@@ -48,7 +48,7 @@ const WardReport: React.FC = () => {
     return (
         <>
             <div className="flex justify-between max-w-[1306px] md:h-16 items-center my-6">
-                <h1 className='font-bold text-dark text-xl md:text-3xl'>Hello, {userData.user.name ?? 'Admin'}</h1>
+                <h1 className='font-bold text-dark text-xl md:text-3xl'>Hello, {userData?.user.name ?? 'Admin'}</h1>
                 <div className='flex flex-col md:flex-row items-center justify-center md:justify-end gap-7 lg:gap-[50px]'>
                     <p>Category: Common entrance</p>
                     <p className='h-12 bg-primary text-white rounded-[10px] flex items-center p-3 cursor-pointer'>Change Category</p>

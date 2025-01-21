@@ -24,7 +24,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
   );
 
   const [userData, setUserData] = useState<IRegisterUser>({
-    type: "student",
+    role: "student",
     name: "",
     email: "",
     password: "",
