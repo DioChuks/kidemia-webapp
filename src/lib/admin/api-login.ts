@@ -22,7 +22,7 @@ interface UserAdmin {
 
 // Admin Login function
 export const attemptLogin = async (email:string, password:string): Promise<UserAdmin> => {
-  const response = await fetch(`${env.local}/auth/admin/login`, {
+  const response = await fetch(`${env.prod}/auth/admin/login`, {
     method: "POST",
     body: JSON.stringify({ email: email, password: password }),
     headers: {
@@ -39,7 +39,7 @@ export const attemptLogin = async (email:string, password:string): Promise<UserA
 };
 
 export const attemptRegister = async (email:string, password:string): Promise<UserAdmin> => {
-  const response = await fetch(`${env.local}/auth/admin/register`, {
+  const response = await fetch(`${env.prod}/auth/admin/register`, {
     method: "POST",
     body: JSON.stringify({ email: email, password: password }),
     headers: {

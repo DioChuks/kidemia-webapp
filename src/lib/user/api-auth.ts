@@ -3,7 +3,7 @@ import { env } from "../api";
 
 // Admin Login function
 export const attemptLogin = async (email: string, password: string): Promise<IAuthUser> => {
-  const response = await fetch(`${env.local}/auth/login`, {
+  const response = await fetch(`${env.prod}/auth/login`, {
     method: "POST",
     body: JSON.stringify({ email: email, password: password }),
     headers: {
@@ -20,7 +20,7 @@ export const attemptLogin = async (email: string, password: string): Promise<IAu
 };
 
 export const attemptRegister = async (data: IRegisterUser): Promise<IAuthUser> => {
-  const response = await fetch(`${env.local}/auth/register`, {
+  const response = await fetch(`${env.prod}/auth/register`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {

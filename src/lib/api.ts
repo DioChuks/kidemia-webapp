@@ -13,7 +13,7 @@ export const env = {
 };
 
 const api = axios.create({
-  baseURL: env.local,
+  baseURL: env.prod,
   timeout: 10000,
   headers: {
     Accept: "application/json",
