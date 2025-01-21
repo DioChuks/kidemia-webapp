@@ -8,7 +8,7 @@ const Sidebar: React.FC = () => (
     <div className="flex items-center gap-5 text-secondary mt-5">
         <Grid/> <span>Dashboard</span>
     </div>
-    <Link to="/admin/dashboard/report" className="w-full flex items-center gap-5 text-secondary text-secondary border-bottom-3 border-secondary">
+    <Link to="/admin/dashboard/report" className="w-full flex items-center gap-5 text-secondary border-bottom-3 border-secondary">
       <ReportLineIcon/> <span className="font-lg">Report</span>
     </Link>
     <Link to="/admin/dashboard/subjects" className="w-full flex justify-between items-center gap-5 text-dark">
