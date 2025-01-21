@@ -29,7 +29,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
     email: "",
     password: "",
     confirm_password: "",
-    purpose: null,
+    category_id: null,
     guardian_email: "",
   });
 
@@ -86,10 +86,10 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
       }
       setStep("purpose");
     }
-    else if (step == "purpose" && userData.purpose == null) {
+    else if (step == "purpose" && userData.category_id == null) {
       return;
     } 
-    else if (step === "purpose" && userData.purpose !== null) {
+    else if (step === "purpose" && userData.category_id !== null) {
       setStep("guardian");
     }
     onProgress("next");
@@ -241,7 +241,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 <div
                   key={purpose.id}
                   className={`w-auto h-4 flex items-center p-10 gap-2 rounded-sm transition-all purpose-box 
-                    ${purpose.id === userData.purpose ? 'bg-secondary':''}`}
+                    ${purpose.id === userData.category_id ? 'bg-secondary':''}`}
                   id="purposeBox"
                 >
                   <input
@@ -252,7 +252,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                     aria-describedby="purpose"
                     value={purpose.id}
                     onChange={() => handlePurposeChange(purpose.id)}
-                    checked={purpose.id === userData.purpose}
+                    checked={purpose.id === userData.category_id}
                   />
                   <label
                     htmlFor={`purpose-${purpose.id}`}
@@ -278,7 +278,7 @@ const StudentStep: React.FC<{onProgress: (pos: string) => void}> = ({ onProgress
                 style={{ "--textColor": "green" } as React.CSSProperties}
                 type="button"
                 onClick={handleNextStep}
-                disabled={userData.purpose === null}
+                disabled={userData.category_id === null}
               >
                 continue
               </button>

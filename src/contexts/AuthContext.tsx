@@ -15,7 +15,7 @@ interface AuthUser {
       created_at: Date;
       updated_at: Date; 
     },
-    token: string
+    token: string;
 }
 
 interface AuthContextProps {

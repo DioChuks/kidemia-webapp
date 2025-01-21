@@ -22,6 +22,6 @@ export interface IRegisterUser {
     email: string;
     password: string;
     confirm_password: string;
-    purpose: number | null;
+    category_id: number | null;
     guardian_email: string;
 }
