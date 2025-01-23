@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 // import LogoCC42 from "../../assets/images/KIDEMIA LOGO CC 4 -2.png";
 // import { AuthContext } from "../../contexts/AuthContext";
