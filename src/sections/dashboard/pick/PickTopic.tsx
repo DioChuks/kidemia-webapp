@@ -53,8 +53,11 @@ const PickTopic: React.FC = () => {
 
       // Navigate to the assessment page after a short delay
       setTimeout(() => {
-        navigate(`/assessment/${subjectId}/ready/${type}/for/${response.uuid}`);
-      }, 2500);
+        navigate(`/assessment/${subjectId}/ready/${type}/for/${response.uuid}`, {
+          replace: true,
+          state: { question_ids: response.question_ids },
+        });
+      }, 2000);
     } catch (error) {
       handleRequestError(error, "");
     } finally {
